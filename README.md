@@ -29,6 +29,7 @@ negotiate a fair price and build a trusted reputation  no CV required.
 - Member 2 — Frontend Developer (HTML)
 - Member 3 — Frontend Developer (JavaScript)
 - Member 4 — CSS Styling & UX
+- Member 5 -
 Testing & Documentation(all Members)
 
 ## How to Run
