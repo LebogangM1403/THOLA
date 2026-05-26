@@ -1,0 +1,451 @@
+/* --- used the steric to the margin and padding of the page --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #fffbf7; /* this is the background colour for the pages */
+  color: #1e293b;
+}
+
+/* --- Navigation Bar --- */
+.navbar {
+  background-color: #0d1e3d; /* Dark navy color */
+  color: #ffffff;
+  padding: 16px 0;
+}
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding-left: 20px;
+}
+
+/* THOLA LOGO */
+.logo {
+  font-size: 22px;      
+  font-weight: 800; 
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.login-link {
+  color: #ff6600;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-nav {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* --- Hero Section --- */
+.hero {
+  padding: 60px 0 40px 0;
+}
+.hero-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.badge {
+  background-color: #ffe6d5;
+  color: #d45500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+h1 {
+  font-size: 44px;
+  color: #0d1e3d;
+  margin: 24px 0 16px 0;
+  font-weight: 800;
+}
+.lead-text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+  max-width: 850px;
+  margin-bottom: 24px;
+  color: #334155;
+}
+.sub-text {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.6;
+  max-width: 850px;
+  margin-bottom: 32px;
+}
+
+/* --- buttons --- */
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 60px;
+}
+
+.btn {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+/* my two buttons in the hero section */
+.btn-create {
+  background-color: #ff6600;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
+}
+
+.btn-learn-more {
+  background-color: transparent;
+  border-color: #ff6600;
+  color: #ff6600;
+}
+
+/* --- services --- */
+.services-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.icon-circle {
+  width: 50px;
+  height: 50px;
+  background-color: #ffe6d5;
+  color: #ff6600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.service-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+.image-card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 15px;
+    gap: 30px;
+}
+
+/* --- stats section --- */
+.stats {
+  background-color: #1a2536; /* slightly ligher than the nav bar background */
+  padding: 60px 0;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.stats-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around; /* for added equal space around my divs */
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* for my vertical spacing between the number and text label */
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: 800; /* extra bold text weight like my logo */
+  color: #ff6600;
+}
+
+.stat-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #94a3b8; 
+}
+
+/* ===================================================
+   AUTH PAGES  –  Login & Create Account
+   =================================================== */
+
+/* Screen-reader-only labels */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Full-screen wrapper */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0d1e3d 0%, #1a2536 50%, #0d1e3d 100%);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle decorative circles in the background */
+.auth-page::before,
+.auth-page::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.07;
+  pointer-events: none;
+}
+.auth-page::before {
+  width: 500px;
+  height: 500px;
+  background: #ff6600;
+  top: -120px;
+  right: -120px;
+}
+.auth-page::after {
+  width: 360px;
+  height: 360px;
+  background: #ff6600;
+  bottom: -80px;
+  left: -80px;
+}
+
+/* Card */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 20px;
+  padding: 48px 36px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: authCardIn 0.6s ease-out;
+}
+
+@keyframes authCardIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* Title & subtitle */
+.auth-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.3px;
+}
+
+.auth-subtitle {
+  font-size: 15px;
+  color: #94a3b8;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+/* Form layout */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Inputs */
+.auth-input {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-input::placeholder {
+  color: #64748b;
+}
+
+.auth-input:focus {
+  border-color: #ff6600;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.18);
+}
+
+/* Submit button */
+.auth-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff6600 0%, #e65c00 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 16px rgba(255, 102, 0, 0.25);
+}
+
+.auth-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 102, 0, 0.35);
+}
+
+.auth-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 102, 0, 0.2);
+}
+
+/* Footer link */
+.auth-switch {
+  margin-top: 28px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.auth-link {
+  color: #ff6600;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.auth-link:hover {
+  color: #ff8533;
+  text-decoration: underline;
+}
+
+/* for responsiveness of screens 768 pixels wide or smaller e.g phones */
+@media screen and (max-width: 768px) {
+  
+
+  body {
+    overflow-x: hidden; /* gets rid of horizontal scrolling */
+  }
+
+  /* --- nsv bar --- */
+  .nav-container {
+    flex-direction: column; /* Stacking */
+    gap: 16px;
+    text-align: center;
+    padding: 10px;
+  }
+  .nav-actions {
+    width: 100%;
+    justify-content: center; /* centers nav on mobile */
+    gap: 16px;
+  }
+
+  /* --- Hero Section --- */
+  .hero {
+    padding: 40px 0;
+    text-align: center; /* for mobiles centered */
+  }
+  h1 {
+    font-size: 32px; /* decreases for mobile */
+    line-height: 1.2;
+    margin: 16px 0;
+  }
+  .lead-text {
+    font-size: 16px;
+  }
+  .sub-text {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  /* --- buttons --- */
+  /* stacks buttons vertically */
+  .button-group {
+    flex-direction: column; 
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  /* makes buttons full-width  */
+  .btn {
+    width: 100%; 
+    padding: 14px 20px;
+  }
+
+  /* --- services --- */
+  /* stacks the service icons vertically */
+  .services-container {
+    flex-direction: column; 
+    gap: 32px;
+  }
+  .service-card {
+    width: 100%;
+  }
+
+  /* --- stats section --- */
+  /* stacks numeric cards vertically */
+  .stats-container {
+    flex-direction: column; 
+    gap: 32px;
+    padding: 0 40px;
+  }
+  .stat-number {
+    font-size: 32px;
+  }
+
+  /* --- auth pages --- */
+  .auth-card {
+    padding: 36px 24px;
+  }
+  .auth-title {
+    font-size: 24px;
+  }
+}
