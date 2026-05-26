@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login – Thola Platform</title>
-    <meta name="description" content="Secure login page for the Thola platform. Sign in to access your dashboard and manage your account.">
+    <title>Create Account – Thola Platform</title>
+    <meta name="description" content="Create a new account on the Thola platform. Join the community and start discovering local services.">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -13,20 +13,23 @@
 <body>
     <main class="auth-page">
         <section class="auth-card">
-            <h1 class="auth-title">Welcome Back</h1>
-            <p class="auth-subtitle">Sign in to continue</p>
+            <h1 class="auth-title">Create Account</h1>
+            <p class="auth-subtitle">Join us and start exploring</p>
             <form action="#" method="POST" class="auth-form">
+                <label for="name" class="sr-only">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Full Name" required autocomplete="name" class="auth-input" />
+
                 <label for="email" class="sr-only">Email address</label>
                 <input type="email" id="email" name="email" placeholder="Email address" required autocomplete="email" class="auth-input" />
 
                 <label for="password" class="sr-only">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password" required autocomplete="current-password" class="auth-input" />
+                <input type="password" id="password" name="password" placeholder="Password" required autocomplete="new-password" class="auth-input" />
 
-                <button type="submit" class="auth-button">Log In</button>
+                <button type="submit" class="auth-button">Create Account</button>
             </form>
             <p class="auth-switch">
-                Don’t have an account?
-                <a href="create_user.html" class="auth-link">Create one</a>
+                Already have an account?
+                <a href="login.html" class="auth-link">Log in</a>
             </p>
         </section>
     </main>
