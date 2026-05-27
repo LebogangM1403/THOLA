@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THOLA — Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="dashboard-page">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">&#128270; THOLA</div>
+            <div class="nav-actions">
+                <a href="profile.html" class="login-link">&#128100; My Profile</a>
+                <a href="post-listing.html">
+                    <button class="btn-nav">+ Post a Listing</button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- WELCOME BANNER -->
+    <section class="welcome-banner">
+        <div class="welcome-container">
+            <div class="welcome-text">
+                <h2>Welcome back &#128075;</h2>
+                <p>Browse skills and goods available near you right now.</p>
+            </div>
+            <a href="post-listing.html" class="post-btn">+ Post Your Skill or Goods</a>
+        </div>
+    </section>
+
+    <!-- SEARCH & FILTERS -->
+    <section class="search-bar-section">
+        <div class="search-bar-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="&#128270; Search for a skill or goods..." />
+            <select class="filter-select" id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="cleaning">House Cleaning</option>
+                <option value="food">Food</option>
+                <option value="tutoring">Tutoring</option>
+                <option value="repairs">Phone Repairs</option>
+            </select>
+            <select class="filter-select" id="provinceFilter">
+                <option value="">All Provinces</option>
+                <option value="gauteng">Gauteng</option>
+                <option value="western-cape">Western Cape</option>
+                <option value="kzn">KwaZulu-Natal</option>
+            </select>
+            <button class="search-btn">Search</button>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="tab-btn active" data-tab="all">All</button>
+            <button class="tab-btn" data-tab="skill">Skills</button>
+            <button class="tab-btn" data-tab="goods">Goods</button>
+            <button class="tab-btn" data-tab="near">Near Me</button>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">Verified Providers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50,000+</div>
+                <div class="stat-label">Completed Deals</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">9 Provinces</div>
+                <div class="stat-label">South Africa</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LISTINGS -->
+    <main class="listings-section">
+        <div class="listings-header">
+            <h3 id="listingsTitle">Listings Near You</h3>
+            <span id="listingsCount">Showing 4 listings</span>
+        </div>
+
+        <div class="listings-grid" id="listingsGrid">
+            <!-- Your listings here (unchanged) -->
+            <!-- ... paste your 4 listing cards ... -->
+        </div>
+
+        <div class="no-results" id="noResults">
+            &#128269; No listings found. Try different filters.
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have.</p>
+        <p style="margin-top: 12px;">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Browse</a>
+            <a href="post-listing.html">Post</a>
+            <a href="profile.html">Profile</a>
+        </p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
