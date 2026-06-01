@@ -15,20 +15,93 @@
         <section class="auth-card">
             <h1 class="auth-title">Welcome Back</h1>
             <p class="auth-subtitle">Sign in to continue</p>
-            <form action="#" method="POST" class="auth-form">
+            <form action="#" method="POST" class="auth-form" id="login-form">
                 <label for="email" class="sr-only">Email address</label>
                 <input type="email" id="email" name="email" placeholder="Email address" required autocomplete="email" class="auth-input" />
 
                 <label for="password" class="sr-only">Password</label>
                 <input type="password" id="password" name="password" placeholder="Password" required autocomplete="current-password" class="auth-input" />
 
-                <button type="submit" class="auth-button">Log In</button>
+                <div id="login-error" class="error-msg" style="display: none; color: #ff3333; font-size: 14px; font-weight: 600; text-align: left; margin: -8px 0 8px 0;"></div>
+
+                <button type="submit" class="auth-button" id="login-submit">Log In</button>
             </form>
             <p class="auth-switch">
                 Don’t have an account?
-                <a href="create_user.html" class="auth-link">Create one</a>
+                <a href="register.html" class="auth-link">Create one</a>
             </p>
         </section>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('login-form');
+            const loginSubmit = document.getElementById('login-submit');
+            const loginError = document.getElementById('login-error');
+
+            // Simple SHA-256 password hashing helper function
+            async function hashPassword(password) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(password);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+
+            // Get local database from localStorage
+            function getDatabase() {
+                const localData = localStorage.getItem('thola_database');
+                if (localData) {
+                    return JSON.parse(localData);
+                }
+                return [];
+            }
+
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                loginError.style.display = 'none';
+
+                const email = document.getElementById('email').value.trim().toLowerCase();
+                const password = document.getElementById('password').value;
+
+                loginSubmit.disabled = true;
+                loginSubmit.innerText = 'Logging in...';
+
+                try {
+                    const users = getDatabase();
+                    const user = users.find(u => u.email.toLowerCase() === email);
+
+                    if (!user) {
+                        loginError.innerText = 'Invalid email or password.';
+                        loginError.style.display = 'block';
+                        loginSubmit.disabled = false;
+                        loginSubmit.innerText = 'Log In';
+                        return;
+                    }
+
+                    // Hash the input password and compare it with stored hashed password
+                    const inputHash = await hashPassword(password);
+                    if (inputHash === user.password) {
+                        // Store simple user session in LocalStorage
+                        localStorage.setItem('thola_user', JSON.stringify({
+                            name: user.name,
+                            email: user.email
+                        }));
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        loginError.innerText = 'Invalid email or password.';
+                        loginError.style.display = 'block';
+                    }
+                } catch (err) {
+                    loginError.innerText = 'Error performing authentication. Please try again.';
+                    loginError.style.display = 'block';
+                    console.error(err);
+                } finally {
+                    loginSubmit.disabled = false;
+                    loginSubmit.innerText = 'Log In';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
