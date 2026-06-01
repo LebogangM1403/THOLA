@@ -47,6 +47,8 @@ function filterListings() {
     document.getElementById('noResults').classList.toggle('visible', visible === 0);
 }
 
+// PROFILE TAB SWITCHING
+function showProfileTab(tab, btn) {
 // PROFILE 
 function showTab(tab, btn) {
     document.querySelectorAll('.profile-tab').forEach(b => b.classList.remove('active'));
@@ -60,7 +62,66 @@ function showTab(tab, btn) {
 
 // INITIALIZE 
 document.addEventListener('DOMContentLoaded', () => {
-    // Dashboard listeners
+    // 1. Session check & authentication protection
+    const currentUser = JSON.parse(localStorage.getItem('thola_user'));
+    const isDashboard = document.body.classList.contains('dashboard-page');
+    const isProfile = document.body.classList.contains('profile-page');
+
+    if ((isDashboard || isProfile) && !currentUser) {
+        // Not logged in, redirect to login
+        alert('Please log in to access this page.');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // 2. Customizations for Dashboard
+    if (isDashboard && currentUser) {
+        // Customize welcome greeting
+        const welcomeTitle = document.querySelector('.welcome-text h2');
+        if (welcomeTitle) {
+            welcomeTitle.innerHTML = `Welcome back, ${currentUser.name} &#128075;`;
+        }
+        
+        // Customize navbar Profile link
+        const profileLink = document.querySelector('.login-link');
+        if (profileLink) {
+            profileLink.innerHTML = `&#128100; ${currentUser.name}`;
+        }
+    }
+
+    // 3. Customizations for Profile
+    if (isProfile && currentUser) {
+        // Set dynamic user fields
+        const profileName = document.getElementById('profileName');
+        const profileEmail = document.getElementById('profileEmail');
+        const profileAvatar = document.getElementById('profileAvatar');
+
+        if (profileName) {
+            profileName.innerHTML = `${currentUser.name} <span class="profile-verified">&#10003; Verified Provider</span>`;
+        }
+        if (profileEmail) {
+            profileEmail.innerText = currentUser.email;
+        }
+        if (profileAvatar) {
+            // Get initials
+            const names = currentUser.name.split(' ');
+            const initials = names.map(n => n.charAt(0)).join('').toUpperCase().substring(0, 2);
+            profileAvatar.innerText = initials || 'U';
+        }
+
+        // Log out handler
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('thola_user');
+                alert('You have logged out successfully.');
+                window.location.href = 'login.html';
+            });
+        }
+    }
+
+    // 4. Dashboard listeners
+main
     const searchInput = document.getElementById('searchInput');
     const categoryFilter = document.getElementById('categoryFilter');
     const provinceFilter = document.getElementById('provinceFilter');
@@ -74,3 +135,4 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => filterByTab(btn.dataset.tab, btn));
     });
 });
+

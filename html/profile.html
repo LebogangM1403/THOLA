@@ -21,8 +21,161 @@
         </div>
     </nav>
 
-    <!-- PROFILE HEADER + STATS + CONTENT (unchanged) -->
-    <!-- ... keep all your existing HTML content here ... -->
+    <!-- PROFILE HEADER + STATS -->
+    <header class="profile-header">
+        <div class="profile-header-container">
+            <div class="avatar-large" id="profileAvatar">U</div>
+            <div class="profile-header-info">
+                <h1 class="profile-name" id="profileName">Loading User... <span class="profile-verified">&#10003; Verified Provider</span></h1>
+                <p class="profile-location" id="profileLocation">&#128205; Gauteng, South Africa</p>
+                <div class="profile-rating">&#9733; 4.8 <span>(42 reviews)</span></div>
+            </div>
+            <button class="profile-edit-btn" id="logoutBtn">➔ Log Out</button>
+        </div>
+    </header>
+
+    <section class="profile-stats">
+        <div class="stat-card">
+            <div class="stat-card-number">3</div>
+            <div class="stat-card-label">Active Listings</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-number">42</div>
+            <div class="stat-card-label">Completed Deals</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-number">98%</div>
+            <div class="stat-card-label">Success Rate</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-number">24h</div>
+            <div class="stat-card-label">Avg Response Time</div>
+        </div>
+    </section>
+
+    <!-- PROFILE CONTENT -->
+    <main class="profile-content">
+        <!-- Sidebar Panel -->
+        <aside class="profile-panel">
+            <h3 class="panel-title">Account Information</h3>
+            <div class="info-row">
+                <span class="info-label">Email</span>
+                <span class="info-value" id="profileEmail">user@example.com</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Member Since</span>
+                <span class="info-value">May 2026</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Status</span>
+                <span class="info-value verified">Active</span>
+            </div>
+
+            <h3 class="panel-title" style="margin-top: 24px;">My Top Skills</h3>
+            <div class="skills-list">
+                <span class="skill-tag">House Cleaning</span>
+                <span class="skill-tag">Tutoring</span>
+                <span class="skill-tag">Phone Repairs</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Panel with Tabs -->
+        <section class="profile-panel">
+            <div class="tabs-row">
+                <button class="profile-tab active" onclick="showProfileTab('listings', this)">My Listings</button>
+                <button class="profile-tab" onclick="showProfileTab('reviews', this)">Client Reviews</button>
+                <button class="profile-tab" onclick="showProfileTab('history', this)">Deal History</button>
+            </div>
+
+            <!-- Tab: Listings -->
+            <div id="tab-listings" class="tab-pane">
+                <div class="my-listings-grid">
+                    <div class="my-listing-card">
+                        <div class="my-card-top">
+                            <h4 class="my-card-title">Professional Cleaning</h4>
+                            <div class="my-card-price">R350</div>
+                        </div>
+                        <div class="my-card-stats">
+                            <span>👁 142 views</span>
+                            <span>🤝 12 deals</span>
+                        </div>
+                        <div class="my-card-actions">
+                            <button class="btn-edit">Edit</button>
+                            <button class="btn-delete">Delete</button>
+                        </div>
+                    </div>
+                    <div class="my-listing-card">
+                        <div class="my-card-top">
+                            <h4 class="my-card-title">Math & Science Tutoring</h4>
+                            <div class="my-card-price">R150</div>
+                        </div>
+                        <div class="my-card-stats">
+                            <span>👁 89 views</span>
+                            <span>🤝 5 deals</span>
+                        </div>
+                        <div class="my-card-actions">
+                            <button class="btn-edit">Edit</button>
+                            <button class="btn-delete">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Reviews -->
+            <div id="tab-reviews" class="tab-pane" style="display: none;">
+                <div class="review-item">
+                    <div class="review-top">
+                        <span class="reviewer-name">Lerato M.</span>
+                        <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733; 5.0</span>
+                    </div>
+                    <p class="review-text">Excellent service! Prompt, professional, and very friendly. Highly recommended!</p>
+                    <span class="review-date">2 hours ago</span>
+                </div>
+                <div class="review-item">
+                    <div class="review-top">
+                        <span class="reviewer-name">Kabelo Z.</span>
+                        <span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.0</span>
+                    </div>
+                    <p class="review-text">Great math tutoring session for my daughter. Clear explanations.</p>
+                    <span class="review-date">3 days ago</span>
+                </div>
+            </div>
+
+            <!-- Tab: History -->
+            <div id="tab-history" class="tab-pane" style="display: none;">
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <h4>House Cleaning &bull; Lerato M.</h4>
+                        <p>Completed on May 28, 2026</p>
+                    </div>
+                    <div>
+                        <span class="transaction-amount">R350</span>
+                        <span class="transaction-status status-completed">Completed</span>
+                    </div>
+                </div>
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <h4>Math Tutoring &bull; Kabelo Z.</h4>
+                        <p>Completed on May 25, 2026</p>
+                    </div>
+                    <div>
+                        <span class="transaction-amount">R150</span>
+                        <span class="transaction-status status-completed">Completed</span>
+                    </div>
+                </div>
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <h4>Phone Repair &bull; Dineo K.</h4>
+                        <p>Pending payment</p>
+                    </div>
+                    <div>
+                        <span class="transaction-amount">R600</span>
+                        <span class="transaction-status status-pending">Pending</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- FOOTER -->
     <footer>
@@ -37,4 +190,6 @@
 
     <script src="../js/main.js"></script>
 </body>
+
 </html>
+
