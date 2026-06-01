@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 // DASHBOARD 
 let currentTab = 'all';
 
@@ -51,6 +49,8 @@ function filterListings() {
 
 // PROFILE TAB SWITCHING
 function showProfileTab(tab, btn) {
+// PROFILE 
+function showTab(tab, btn) {
     document.querySelectorAll('.profile-tab').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 4. Dashboard listeners
+main
     const searchInput = document.getElementById('searchInput');
     const categoryFilter = document.getElementById('categoryFilter');
     const provinceFilter = document.getElementById('provinceFilter');
@@ -134,4 +135,4 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => filterByTab(btn.dataset.tab, btn));
     });
 });
->>>>>>> Stashed changes
+
