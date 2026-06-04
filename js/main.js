@@ -134,5 +134,4 @@ main
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => filterByTab(btn.dataset.tab, btn));
     });
-});
-
+})}
