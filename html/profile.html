@@ -1,265 +1,144 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THOLA — My Profile</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THOLA — My Profile</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body data-page="profile">
+<body class="profile-page" data-page="profile">
 
-  <!-- ── NAVBAR ── -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <span class="logo-dot"></span> THOLA
-      </a>
-      <div class="nav-actions">
-        <a href="dashboard.html" class="nav-link">Browse</a>
-        <a href="post-listing.html">
-          <button class="btn-nav">+ Post a Listing</button>
-        </a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <div class="toggle-knob" id="themeKnob">🌙</div>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ── PROFILE HEADER ── -->
-  <header class="profile-header">
-    <div class="profile-header-container">
-      <div class="avatar-large" id="profileAvatar">U</div>
-      <div class="profile-header-info">
-        <h1 class="profile-name" id="profileName">
-          Loading...
-          <span class="profile-verified">✓ Verified</span>
-        </h1>
-        <p class="profile-location">📍 Gauteng, South Africa</p>
-        <div class="profile-rating">★ 4.8 <span>(42 reviews)</span></div>
-      </div>
-      <button class="profile-edit-btn" id="logoutBtn">→ Log Out</button>
-    </div>
-  </header>
-
-  <!-- ── STATS CARDS ── -->
-  <section class="profile-stats">
-    <div class="stat-card">
-      <div class="stat-card-number">3</div>
-      <div class="stat-card-label">Active Listings</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-number">42</div>
-      <div class="stat-card-label">Completed Deals</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-number">98%</div>
-      <div class="stat-card-label">Success Rate</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-number">24h</div>
-      <div class="stat-card-label">Avg Response</div>
-    </div>
-  </section>
-
-  <!-- ── MAIN CONTENT ── -->
-  <main class="profile-content">
-
-    <!-- Left Sidebar -->
-    <aside>
-      <div class="profile-panel">
-        <div class="panel-title">Account Info</div>
-        <div class="info-list">
-          <div class="info-row">
-            <span class="info-label">Full Name</span>
-            <span class="info-value" id="profileNameSide">—</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Email</span>
-            <span class="info-value" id="profileEmail">—</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Member Since</span>
-            <span class="info-value">May 2026</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">ID Verified</span>
-            <span class="info-value verified">✓ Yes</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Face Match</span>
-            <span class="info-value verified">✓ Yes</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Community Vouched</span>
-            <span class="info-value verified">✓ 2 Vouches</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Status</span>
-            <span class="info-value verified">Active</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="profile-panel" style="margin-top:16px;">
-        <div class="panel-title">My Skills</div>
-        <div class="skills-section">
-          <div class="skills-list">
-            <span class="skill-tag">House Cleaning</span>
-            <span class="skill-tag">Tutoring</span>
-            <span class="skill-tag">Phone Repairs</span>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Right Tabs Panel -->
-    <section class="profile-panel">
-      <div class="tabs-row">
-        <button class="profile-tab active" onclick="showProfileTab('listings', this)">My Listings</button>
-        <button class="profile-tab" onclick="showProfileTab('reviews', this)">Client Reviews</button>
-        <button class="profile-tab" onclick="showProfileTab('history', this)">Deal History</button>
-      </div>
-
-      <!-- Tab: My Listings -->
-      <div id="tab-listings" class="tab-pane">
-        <div class="my-listings-grid">
-
-          <div class="my-listing-card">
-            <div class="my-card-top">
-              <span class="my-card-title">Professional Cleaning</span>
-              <span class="my-card-price">R350</span>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-dot"></span> THOLA
+            </a>
+            <div class="nav-actions">
+                <a href="dashboard.html" class="nav-link">Browse</a>
+                <a href="post-listing.html">
+                    <button class="btn-nav">+ Post a Listing</button>
+                </a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <div class="toggle-knob" id="themeKnob">🌙</div>
+                </button>
             </div>
-            <div class="my-card-stats">
-              <span>👁 142 views</span>
-              <span>🤝 12 deals</span>
-              <span>★ 4.9</span>
-            </div>
-            <div class="my-card-actions">
-              <button class="btn-edit">✏ Edit</button>
-              <button class="btn-delete">🗑 Delete</button>
-            </div>
-          </div>
-
-          <div class="my-listing-card">
-            <div class="my-card-top">
-              <span class="my-card-title">Maths & Science Tutoring</span>
-              <span class="my-card-price">R150</span>
-            </div>
-            <div class="my-card-stats">
-              <span>👁 89 views</span>
-              <span>🤝 5 deals</span>
-              <span>★ 4.7</span>
-            </div>
-            <div class="my-card-actions">
-              <button class="btn-edit">✏ Edit</button>
-              <button class="btn-delete">🗑 Delete</button>
-            </div>
-          </div>
-
-          <div class="my-listing-card">
-            <div class="my-card-top">
-              <span class="my-card-title">Phone Repairs</span>
-              <span class="my-card-price">R600</span>
-            </div>
-            <div class="my-card-stats">
-              <span>👁 210 views</span>
-              <span>🤝 25 deals</span>
-              <span>★ 5.0</span>
-            </div>
-            <div class="my-card-actions">
-              <button class="btn-edit">✏ Edit</button>
-              <button class="btn-delete">🗑 Delete</button>
-            </div>
-          </div>
-
         </div>
-      </div>
+    </nav>
 
-      <!-- Tab: Reviews -->
-      <div id="tab-reviews" class="tab-pane" style="display:none;">
-
-        <div class="review-item">
-          <div class="review-top">
-            <span class="reviewer-name">Lerato M.</span>
-            <span class="review-stars">★★★★★</span>
-          </div>
-          <p class="review-text">Excellent service! Prompt, professional, and very friendly. My house was spotless. Highly recommended!</p>
-          <span class="review-date">2 hours ago</span>
+    <!-- PROFILE HEADER -->
+    <header class="profile-header">
+        <div class="profile-header-container">
+            <div class="avatar-large" id="profileAvatar">LB</div>
+            <div class="profile-header-info">
+                <h1 class="profile-name" id="profileName">
+                    Lebogang 
+                    <span class="profile-verified">✓ Verified</span>
+                </h1>
+                <p class="profile-location">📍 Soweto, Gauteng</p>
+                <div class="profile-rating">★ 4.9 <span>(12 reviews)</span></div>
+            </div>
+            <button class="profile-edit-btn" id="logoutBtn">Log Out</button>
         </div>
+    </header>
 
-        <div class="review-item">
-          <div class="review-top">
-            <span class="reviewer-name">Kabelo Z.</span>
-            <span class="review-stars">★★★★☆</span>
-          </div>
-          <p class="review-text">Great maths tutoring session for my daughter. Clear explanations and very patient teacher.</p>
-          <span class="review-date">3 days ago</span>
+    <!-- STATS -->
+    <section class="profile-stats">
+        <div class="stat-card">
+            <div class="stat-card-number">3</div>
+            <div class="stat-card-label">Active Listings</div>
         </div>
-
-        <div class="review-item">
-          <div class="review-top">
-            <span class="reviewer-name">Dineo K.</span>
-            <span class="review-stars">★★★★★</span>
-          </div>
-          <p class="review-text">Fixed my phone in under an hour. Original parts and came with a warranty. Will use again!</p>
-          <span class="review-date">1 week ago</span>
+        <div class="stat-card">
+            <div class="stat-card-number">12</div>
+            <div class="stat-card-label">Completed Deals</div>
         </div>
-
-      </div>
-
-      <!-- Tab: History -->
-      <div id="tab-history" class="tab-pane" style="display:none;">
-
-        <div class="transaction-item">
-          <div class="transaction-info">
-            <h4>House Cleaning · Lerato M.</h4>
-            <p>Completed on May 28, 2026 · Sandton, Gauteng</p>
-          </div>
-          <div>
-            <div class="transaction-amount">+R350</div>
-            <span class="transaction-status status-completed">Completed</span>
-          </div>
+        <div class="stat-card">
+            <div class="stat-card-number">4.9</div>
+            <div class="stat-card-label">Average Rating</div>
         </div>
-
-        <div class="transaction-item">
-          <div class="transaction-info">
-            <h4>Maths Tutoring · Kabelo Z.</h4>
-            <p>Completed on May 25, 2026 · Pretoria, Gauteng</p>
-          </div>
-          <div>
-            <div class="transaction-amount">+R150</div>
-            <span class="transaction-status status-completed">Completed</span>
-          </div>
+        <div class="stat-card">
+            <div class="stat-card-number">R2,400</div>
+            <div class="stat-card-label">Total Earned</div>
         </div>
-
-        <div class="transaction-item">
-          <div class="transaction-info">
-            <h4>Phone Repair · Dineo K.</h4>
-            <p>Pending payment confirmation</p>
-          </div>
-          <div>
-            <div class="transaction-amount">+R600</div>
-            <span class="transaction-status status-pending">Pending</span>
-          </div>
-        </div>
-
-      </div>
     </section>
 
-  </main>
+    <!-- MAIN CONTENT -->
+    <main class="profile-content">
 
-  <!-- ── FOOTER ── -->
-  <footer>
-    <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have. Trust Who You Deal With.</p>
-    <p style="margin-top:10px;">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Browse</a>
-      <a href="post-listing.html">Post a Listing</a>
-      <a href="report.html">Report</a>
-    </p>
-  </footer>
+        <!-- Left Sidebar -->
+        <aside>
+            <div class="profile-panel">
+                <div class="panel-title">Account Info</div>
+                <div class="info-row">
+                    <span class="info-label">Full Name</span>
+                    <span class="info-value" id="profileNameSide">Lebogang</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Phone</span>
+                    <span class="info-value">+27 *** *** 789</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Location</span>
+                    <span class="info-value">Soweto, Gauteng</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">ID Verified</span>
+                    <span class="info-value verified">✓ Yes</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Member Since</span>
+                    <span class="info-value">January 2026</span>
+                </div>
+            </div>
 
-  <script src="../js/main.js"></script>
+            <div class="profile-panel" style="margin-top:16px;">
+                <div class="panel-title">My Skills</div>
+                <div class="skills-list">
+                    <span class="skill-tag">House Cleaning</span>
+                    <span class="skill-tag">Laundry</span>
+                    <span class="skill-tag">Babysitting</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Tabs Panel -->
+        <section class="profile-panel">
+            <div class="tabs-row">
+                <button class="profile-tab active" onclick="showProfileTab('listings', this)">My Listings</button>
+                <button class="profile-tab" onclick="showProfileTab('reviews', this)">Client Reviews</button>
+                <button class="profile-tab" onclick="showProfileTab('history', this)">Deal History</button>
+            </div>
+
+            <!-- My Listings Tab -->
+            <div id="tab-listings" class="tab-pane">
+                <div class="my-listings-grid">
+               
+                </div>
+            </div>
+
+            <!-- Reviews Tab -->
+            <div id="tab-reviews" class="tab-pane" style="display:none;">
+             
+            </div>
+
+            <!-- History Tab -->
+            <div id="tab-history" class="tab-pane" style="display:none;">
+             
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have. Trust Who You Deal With.</p>
+        <p style="margin-top:10px;">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Browse</a>
+            <a href="post-listing.html">Post a Listing</a>
+            <a href="report.html">Report</a>
+        </p>
+    </footer>
+
+    <script src="../js/main.js"></script>
 </body>
 </html>
