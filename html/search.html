@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THOLA — Search</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="dashboard-page">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">&#128270; THOLA</div>
+            <div class="nav-actions">
+                <a href="dashboard.html" class="login-link">&#128269; Browse</a>
+                <a href="profile.html" class="login-link">&#128100; Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SEARCH HEADER -->
+    <section class="search-bar-section" style="padding: 40px 0;">
+        <div class="search-bar-container" style="max-width: 900px;">
+            <input type="text" class="search-input" id="mainSearch" placeholder="Search skills, goods, or services in South Africa..." style="font-size:16px; padding:16px;">
+            <button class="search-btn" onclick="performSearch()" style="padding:16px 32px;">Search</button>
+        </div>
+    </section>
+
+    <main class="listings-section">
+        <div class="listings-header">
+            <h3 id="searchTitle">Search Results</h3>
+            <span id="resultCount">0 results found</span>
+        </div>
+
+        <div class="listings-grid" id="searchResults">
+            <!-- Results will be populated by JS -->
+        </div>
+
+        <div class="no-results" id="noSearchResults">
+            &#128269; No results found. Try different keywords.
+        </div>
+    </main>
+
+    <footer>
+        <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have.</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function performSearch() {
+            const query = document.getElementById('mainSearch').value.toLowerCase().trim();
+            const resultsContainer = document.getElementById('searchResults');
+            const noResults = document.getElementById('noSearchResults');
+            const countEl = document.getElementById('resultCount');
+
+            resultsContainer.innerHTML = '';
+
+            if (!query) {
+                countEl.textContent = "0 results found";
+                noResults.classList.add('visible');
+                return;
+            }
+
+            // Mock search results (you can expand this)
+            let resultsHTML = `
+                <div class="listing-card">
+                    <div class="card-top"><span class="category-badge">Skill</span><div class="card-icon">🧹</div></div>
+                    <h4 class="card-title">House Cleaning - Soweto</h4>
+                    <p class="card-description">Professional cleaning services. Available today.</p>
+                    <div class="card-price">R150 <span>per session</span></div>
+                </div>
+            `;
+
+            resultsContainer.innerHTML = resultsHTML;
+            countEl.textContent = "1 result found";
+            noResults.classList.remove('visible');
+        }
+
+        // Allow pressing Enter in search box
+        document.getElementById('mainSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') performSearch();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THOLA — Chat</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="chat">
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="dashboard.html" class="logo">
+        <span class="logo-dot"></span> THOLA
+      </a>
+      <div class="nav-actions">
+        <a href="dashboard.html" class="nav-link">← Browse</a>
+        <a href="profile.html"   class="nav-link">My Profile</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <div class="toggle-knob" id="themeKnob">🌙</div>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── CHAT LAYOUT ── -->
+  <div class="chat-layout">
+
+    <!-- LEFT: Conversations Sidebar -->
+    <aside class="chat-sidebar">
+      <div class="chat-sidebar-header">Messages</div>
+      <div class="chat-list">
+
+        <div class="chat-item active">
+          <div class="seller-avatar avatar-sm">TM</div>
+          <div class="chat-item-info">
+            <div class="chat-item-name">Thabo M.</div>
+            <div class="chat-item-preview">Is it still available?</div>
+          </div>
+          <div class="chat-item-time">2m</div>
+          <div class="unread-dot"></div>
+        </div>
+
+        <div class="chat-item">
+          <div class="seller-avatar avatar-sm">NS</div>
+          <div class="chat-item-info">
+            <div class="chat-item-name">Naledi S.</div>
+            <div class="chat-item-preview">Deal confirmed ✅</div>
+          </div>
+          <div class="chat-item-time">1h</div>
+        </div>
+
+        <div class="chat-item">
+          <div class="seller-avatar avatar-sm">SK</div>
+          <div class="chat-item-info">
+            <div class="chat-item-name">Sipho K.</div>
+            <div class="chat-item-preview">Can we do R120?</div>
+          </div>
+          <div class="chat-item-time">3h</div>
+        </div>
+
+        <div class="chat-item">
+          <div class="seller-avatar avatar-sm">LT</div>
+          <div class="chat-item-info">
+            <div class="chat-item-name">Lebo T.</div>
+            <div class="chat-item-preview">Parts arrived, ready!</div>
+          </div>
+          <div class="chat-item-time">1d</div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- RIGHT: Chat Window -->
+    <section class="chat-window">
+
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="seller-avatar avatar-md">TM</div>
+          <div>
+            <div class="chat-header-name">
+              Thabo M.
+              <span class="verified-badge">✓ Verified</span>
+            </div>
+            <div class="chat-header-sub">Professional House Cleaning · R350/session</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div class="online-dot"></div>
+          <span style="font-size:12px; color:var(--text-3);">Online</span>
+        </div>
+      </div>
+
+      <!-- Messages Area -->
+      <div class="chat-messages" id="chatMessages">
+
+        <!-- System message -->
+        <div style="text-align:center; font-size:12px; color:var(--text-3); padding:4px 0;">
+          Today · You are now connected with Thabo M.
+        </div>
+
+        <!-- Received message -->
+        <div class="message-wrap received fade-in">
+          <div class="message-bubble received">
+            Hi! I saw your listing for house cleaning. Is this still available this weekend?
+          </div>
+          <div class="message-meta">Thabo M. · 10:02</div>
+        </div>
+
+        <!-- Sent message -->
+        <div class="message-wrap sent fade-in">
+          <div class="message-bubble sent">
+            Yes, still available! I can do Saturday or Sunday morning.
+          </div>
+          <div class="message-meta">You · 10:04</div>
+        </div>
+
+        <!-- Received -->
+        <div class="message-wrap received fade-in">
+          <div class="message-bubble received">
+            Saturday works for me. Your listing says R350 — would you consider R300?
+          </div>
+          <div class="message-meta">Thabo M. · 10:06</div>
+        </div>
+
+        <!-- Sent -->
+        <div class="message-wrap sent fade-in">
+          <div class="message-bubble sent">
+            💰 Offer: R320
+          </div>
+          <div class="message-meta">You · 10:07</div>
+        </div>
+
+        <!-- Received -->
+        <div class="message-wrap received fade-in">
+          <div class="message-bubble received">
+            That works for me. Deal at R320 ✅ I will confirm the address.
+          </div>
+          <div class="message-meta">Thabo M. · 10:09</div>
+        </div>
+
+      </div>
+
+      <!-- Offer Bar -->
+      <div class="offer-bar">
+        <span class="offer-label">💰 Make Offer:</span>
+        <input type="number" class="offer-input" id="offerInput" placeholder="Enter amount in Rands" min="0" />
+        <button class="btn-accept"  onclick="sendOffer()">Send Offer</button>
+        <button class="btn-accept"  onclick="acceptOffer()"  style="background:var(--ok-bg);  color:var(--ok-text);">Accept</button>
+        <button class="btn-decline" onclick="declineOffer()" >Decline</button>
+      </div>
+
+      <!-- Input Row -->
+      <div class="chat-input-row">
+        <textarea
+          class="chat-input"
+          id="chatInput"
+          rows="1"
+          placeholder="Type your message… (Enter to send)"
+        ></textarea>
+        <button class="chat-send-btn" onclick="sendMessage()" aria-label="Send">➤</button>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have. Trust Who You Deal With.</p>
+    <p style="margin-top:10px;">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Browse</a>
+      <a href="profile.html">Profile</a>
+      <a href="report.html">Report</a>
+    </p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
