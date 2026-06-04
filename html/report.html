@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THOLA — Report</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="dashboard-page">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">&#128270; THOLA</div>
+            <div class="nav-actions">
+                <a href="dashboard.html" class="login-link">&#128269; Browse</a>
+                <a href="profile.html" class="login-link">&#128100; Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="listings-section">
+        <div style="max-width: 600px; margin: 40px auto; padding: 40px; background: white; border-radius: 12px; border: 1px solid #e2e8f0;">
+            <h2 style="text-align:center; margin-bottom: 8px;">Report a Listing or User</h2>
+            <p style="text-align:center; color:#64748b; margin-bottom: 30px;">Help keep THOLA safe and trusted</p>
+
+            <form id="reportForm">
+                <label style="display:block; margin-bottom:8px; font-weight:600;">What are you reporting?</label>
+                <select class="filter-select" style="width:100%; margin-bottom:20px;" id="reportType">
+                    <option value="">Select Type</option>
+                    <option value="listing">Listing / Post</option>
+                    <option value="user">User / Seller</option>
+                    <option value="scam">Scam / Fraud</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label style="display:block; margin-bottom:8px; font-weight:600;">Listing ID or Username (if known)</label>
+                <input type="text" class="search-input" placeholder="e.g. Listing #48392 or @username" style="margin-bottom:20px;">
+
+                <label style="display:block; margin-bottom:8px; font-weight:600;">Reason</label>
+                <select class="filter-select" style="width:100%; margin-bottom:20px;" id="reason">
+                    <option value="">Choose Reason</option>
+                    <option value="spam">Spam or Fake Listing</option>
+                    <option value="fraud">Suspicious / Possible Scam</option>
+                    <option value="inappropriate">Inappropriate Content</option>
+                    <option value="harassment">Harassment or Bullying</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label style="display:block; margin-bottom:8px; font-weight:600;">Description</label>
+                <textarea class="search-input" rows="6" placeholder="Please provide details..." style="resize:vertical; width:100%; margin-bottom:24px;"></textarea>
+
+                <button type="submit" class="search-btn" style="width:100%; padding:14px;">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have.</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("✅ Thank you! Your report has been submitted. We will review it shortly.");
+            this.reset();
+        });
+    </script>
+</body>
+</html>
