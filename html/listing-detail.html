@@ -4,24 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listing Details</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .details-card {
+            background: white;
+            width: 420px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .details-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .details-card h1 {
+            margin: 15px 0 10px;
+            color: #2c3e50;
+        }
+
+        .details-card p {
+            color: #555;
+            padding: 0 15px;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
+<div class="details-card">
 
-    <section class="listing container">
+    <img src="http://via.placeholder.com/400*250" alt="Service Image">
 
-        <img src="../images/Service.jpg" alt="Service Image">
+    <h1 id="title">Service Title</h1>
+    <p id="description">This is a detailed desription of the service.It explains what is offered, quality, and benefits.</p>
+    <div class="info">
+        <p><strong>Price:</strong>R350</p>
+        <p><strong>Location:</strong>Pretoria</p>
+    </div>
 
-        <div>
-
-            <h1 id="title">Graphic Design</h1>
-
-            <h3 id="description">Type: Skill</p>
-
-            <h3 id="price">Price: R150</h2>
-
-            <button>Contact Seller</button>
-        </div>
-    </section>
+    <button>Contact Seller</button>
+</div>
     
 </body>
 </html>
