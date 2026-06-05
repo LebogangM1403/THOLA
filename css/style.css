@@ -1,0 +1,437 @@
+<<<<<<< Updated upstream
+=======
+
+:root {
+  --bg-page: #fffbf7;         
+  --text-main: #1e293b;       
+  --text-heading: #0d1e3d;    
+  --text-lead: #334155;       
+  --text-sub: #64748b;        
+  --bg-badge: #ffe6d5;        
+  --text-badge: #d45500;      
+  --text-service-h3: #334155; 
+}
+
+body.dark-mode {
+  --bg-page: #0f172a;         /* Dark slate background */
+  --text-main: #e2e8f0;       /* Crisp light text */
+  --text-heading: #f8fafc;    /* Bright white headings */
+  --text-lead: #cbd5e1;       /* Light gray lead text */
+  --text-sub: #94a3b8;        /* Slate sub text */
+  --bg-badge: #2e1f15;        /* Dark orange tint badge */
+  --text-badge: #ff8533;      /* Vibrant orange badge text */
+  --text-service-h3: #e2e8f0; /* Crisp light text for services */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-page); /* FIXED: Changed to variable */
+  color: var(--text-main);           /* FIXED: Changed to variable */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Adds smooth transition fade */
+}
+
+.navbar {
+  background-color: #0d1e3d; /* Dark navy color stays constant */
+  color: #ffffff;
+  padding: 16px 0;
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  padding-left: 20px;
+}
+
+.logo {
+  font-size: 22px;      
+  font-weight: 800; 
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.btn-toggle {
+  background: none;
+  border: 2px solid #ff6600;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.btn-toggle:hover {
+  background-color: rgba(255, 102, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.btn-toggle .icon-moon {
+  display: none;
+}
+.btn-toggle .icon-sun {
+  display: inline-block;
+}
+
+body.dark-mode .btn-toggle .icon-sun {
+  display: none;
+}
+body.dark-mode .btn-toggle .icon-moon {
+  display: inline-block;
+}
+body.dark-mode .btn-toggle {
+  border-color: #ffffff; 
+}
+
+.btn-toggle {
+  position: relative; 
+}
+
+
+.btn-toggle::after {
+  content: attr(data-tooltip); 
+  position: absolute;
+  top: 52px;  
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background-color: #1e293b; 
+  color: #ffffff; 
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0; 
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-toggle::before {
+  content: "";
+  position: absolute;
+  top: 46px;                 /* Sits right on top of the speech bubble */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 6px 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent #1e293b transparent; /* Creates a clean upward triangle */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.btn-toggle:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.btn-toggle:hover::before {
+  opacity: 1;
+}
+
+body.dark-mode .btn-toggle::after {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+body.dark-mode .btn-toggle::before {
+  border-color: transparent transparent #ffffff transparent;
+}
+
+
+.login-link {
+  color: #ff6600;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-nav {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.hero {
+  padding: 60px 0 40px 0;
+}
+.hero-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.badge {
+  background-color: var(--bg-badge);
+  color: var(--text-badge);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+h1 {
+  font-size: 44px;
+  color: var(--text-heading);
+  margin: 24px 0 16px 0;
+  font-weight: 800;
+}
+.lead-text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+  max-width: 850px;
+  margin-bottom: 24px;
+  color: var(--text-lead);
+}
+.sub-text {
+  font-size: 15px;
+  color: var(--text-sub);
+  line-height: 1.6;
+  max-width: 850px;
+  margin-bottom: 32px;
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 60px;
+}
+
+.btn {
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.btn-create {
+  background-color: #ff6600;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
+}
+
+.btn-learn-more {
+  background-color: transparent;
+  border-color: #ff6600;
+  color: #ff6600;
+}
+
+.services-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.icon-circle {
+  width: 50px;
+  height: 50px;
+  background-color: var(--bg-badge);
+  color: #ff6600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.service-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-service-h3);
+}
+
+.image-card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 15px;
+    gap: 30px;
+}
+
+.stats {
+  background-color: #1a2536;
+  padding: 60px 0;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.stats-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; 
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: 800; 
+  color: #ff6600;
+}
+
+.stat-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #94a3b8; 
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden; 
+  }
+
+  .nav-container {
+    flex-direction: column; 
+    gap: 16px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: center; 
+    gap: 16px;
+  }
+
+  .hero {
+    padding: 40px 0;
+    text-align: center; 
+  }
+
+  h1 {
+    font-size: 32px; 
+    line-height: 1.2;
+    margin: 16px 0;
+  }
+
+  .lead-text {
+    font-size: 16px;
+  }
+
+  .sub-text {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .button-group {
+    flex-direction: column; 
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    width: 100%; 
+    padding: 14px 20px;
+  }
+
+  .services-container {
+    flex-direction: column; 
+    gap: 32px;
+  }
+  .service-card {
+    width: 100%;
+  }
+
+  .stats-container {
+    flex-direction: column; 
+    gap: 32px;
+    padding: 0 40px;
+  }
+
+  .stat-number {
+    font-size: 32px;
+  }
+}
+
+/* ==========================================
+   MAIN LANDING PAGE FOOTER
+   ========================================== */
+.main-footer {
+  background-color: #0d1e3d; /* Matches your constant navbar color */
+  color: #ffffff;
+  padding: 40px 0;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1100px; /* Aligns content perfectly with your header/hero grid */
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy {
+  font-size: 14px;
+  color: #94a3b8; /* Uses your crisp slate text configuration */
+  font-weight: 500;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover effects utilizing Thola Core Orange Accent */
+.footer-nav a:hover {
+  color: #ff6600;
+}
+
+/* Dark Mode specific background override if you prefer the footer adapting to canvas */
+body.dark-mode .main-footer {
+  background-color: #090f1d; /* Slightly darker shade of navy for deep contrast in dark mode */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+>>>>>>> Stashed changes
