@@ -893,7 +893,7 @@ footer a {
 }
 
 /* =============================================================
-   CHAT STYLES (Added)
+   CHAT STYLES 
    ============================================================= */
 .chat-layout {
   max-width:1200px; margin:32px auto 80px; padding:0 32px;
@@ -954,3 +954,148 @@ footer a {
 .navbar .nav-actions {
   gap: 8px;
 }
+/* ── DARK MODE ── */
+[data-theme="dark"] body                  { background-color: #0A0907; color: #F0EBE2; }
+[data-theme="dark"] .navbar               { background-color: #080705; border-bottom: 1px solid rgba(255,255,255,0.06); }
+[data-theme="dark"] .logo                 { color: #F0EBE2; }
+[data-theme="dark"] .login-link           { color: #D4A96A; }
+[data-theme="dark"] .btn-nav              { background-color: #D4A96A; color: #0A0907; }
+[data-theme="dark"] h1                    { color: #F0EBE2; }
+[data-theme="dark"] .lead-text            { color: #A09880; }
+[data-theme="dark"] .sub-text             { color: #655E52; }
+[data-theme="dark"] .badge                { background-color: rgba(212,169,106,0.12); color: #D4A96A; }
+[data-theme="dark"] .icon-circle          { background-color: rgba(212,169,106,0.12); color: #D4A96A; }
+[data-theme="dark"] .service-card h3      { color: #A09880; }
+[data-theme="dark"] .welcome-banner       { background-color: #080705; }
+[data-theme="dark"] .welcome-text h2      { color: #F0EBE2; }
+[data-theme="dark"] .welcome-text p       { color: #655E52; }
+[data-theme="dark"] .search-bar-section   { background-color: #141210; border-bottom-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .search-input         { background-color: #1C1915; border-color: rgba(255,255,255,0.08); color: #F0EBE2; }
+[data-theme="dark"] .search-input::placeholder { color: #655E52; }
+[data-theme="dark"] .search-input:focus   { border-color: #D4A96A; box-shadow: 0 0 0 3px rgba(212,169,106,0.15); }
+[data-theme="dark"] .filter-select        { background-color: #1C1915; border-color: rgba(255,255,255,0.08); color: #F0EBE2; }
+[data-theme="dark"] .filter-select:focus  { border-color: #D4A96A; }
+[data-theme="dark"] .search-btn           { background-color: #D4A96A; color: #0A0907; }
+[data-theme="dark"] .tab-btn              { background-color: #1C1915; border-color: rgba(255,255,255,0.08); color: #A09880; }
+[data-theme="dark"] .tab-btn:hover        { border-color: #D4A96A; color: #D4A96A; background-color: #1C1915; }
+[data-theme="dark"] .tab-btn.active       { background-color: #D4A96A; border-color: #D4A96A; color: #0A0907; }
+[data-theme="dark"] .tab-btn.active:hover { color: #0A0907; }
+[data-theme="dark"] .listings-header h3   { color: #F0EBE2; }
+[data-theme="dark"] .listings-header span { color: #655E52; }
+[data-theme="dark"] .listing-card         { background-color: #141210; border-color: rgba(255,255,255,0.07); }
+[data-theme="dark"] .listing-card:hover   { box-shadow: 0 8px 32px rgba(0,0,0,0.5); border-color: rgba(212,169,106,0.3); }
+[data-theme="dark"] .card-title           { color: #F0EBE2; }
+[data-theme="dark"] .card-description     { color: #A09880; }
+[data-theme="dark"] .card-price           { color: #D4A96A; }
+[data-theme="dark"] .card-price span      { color: #655E52; }
+[data-theme="dark"] .card-seller          { border-top-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .seller-avatar        { background-color: #1C1915; color: #D4A96A; }
+[data-theme="dark"] .seller-name          { color: #F0EBE2; }
+[data-theme="dark"] .seller-location      { color: #655E52; }
+[data-theme="dark"] .star-rating          { color: #D4A96A; }
+[data-theme="dark"] .category-badge       { background-color: rgba(212,169,106,0.12); color: #D4A96A; }
+[data-theme="dark"] .category-badge.goods { background-color: rgba(59,130,246,0.15); color: #60A5FA; }
+[data-theme="dark"] .card-icon            { background-color: rgba(212,169,106,0.12); color: #D4A96A; }
+[data-theme="dark"] .btn-book             { background-color: #D4A96A; color: #0A0907; }
+[data-theme="dark"] .btn-offer            { color: #D4A96A; border-color: #D4A96A; }
+[data-theme="dark"] .btn-offer:hover      { background-color: rgba(212,169,106,0.12); }
+[data-theme="dark"] .no-results           { color: #655E52; }
+[data-theme="dark"] .stats                { background-color: #080705; }
+[data-theme="dark"] .dashboard-page       { background-color: #0A0907; }
+[data-theme="dark"] footer                { background-color: #080705; color: rgba(240,235,226,0.4); }
+[data-theme="dark"] footer a              { color: #D4A96A; }
+ 
+/* Profile dark */
+[data-theme="dark"] .profile-page         { background-color: #0A0907; }
+[data-theme="dark"] .profile-header       { background-color: #080705; }
+[data-theme="dark"] .profile-panel        { background-color: #141210; border-color: rgba(255,255,255,0.07); }
+[data-theme="dark"] .panel-title          { color: #F0EBE2; border-bottom-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .info-row             { border-bottom-color: rgba(255,255,255,0.04); }
+[data-theme="dark"] .info-label           { color: #655E52; }
+[data-theme="dark"] .info-value           { color: #F0EBE2; }
+[data-theme="dark"] .info-value.verified  { color: #6FCF85; }
+[data-theme="dark"] .skill-tag            { background-color: rgba(212,169,106,0.12); color: #D4A96A; }
+[data-theme="dark"] .stat-card            { background-color: #141210; border-color: rgba(255,255,255,0.07); }
+[data-theme="dark"] .stat-card-number     { color: #D4A96A; }
+[data-theme="dark"] .stat-card-label      { color: #655E52; }
+[data-theme="dark"] .tabs-row             { border-bottom-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .profile-tab          { color: #655E52; }
+[data-theme="dark"] .profile-tab.active   { color: #D4A96A; border-bottom-color: #D4A96A; }
+[data-theme="dark"] .my-listing-card      { background-color: #1C1915; border-color: rgba(255,255,255,0.07); }
+[data-theme="dark"] .my-card-title        { color: #F0EBE2; }
+[data-theme="dark"] .my-card-price        { color: #D4A96A; }
+[data-theme="dark"] .my-card-stats        { color: #655E52; }
+[data-theme="dark"] .btn-edit             { color: #F0EBE2; border-color: rgba(255,255,255,0.12); }
+[data-theme="dark"] .btn-delete           { color: #F07070; border-color: rgba(155,28,28,0.3); }
+[data-theme="dark"] .review-item          { border-bottom-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .reviewer-name        { color: #F0EBE2; }
+[data-theme="dark"] .review-text          { color: #A09880; }
+[data-theme="dark"] .review-date          { color: #655E52; }
+[data-theme="dark"] .review-stars         { color: #D4A96A; }
+[data-theme="dark"] .transaction-item     { border-bottom-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .transaction-info h4  { color: #F0EBE2; }
+[data-theme="dark"] .transaction-info p   { color: #655E52; }
+[data-theme="dark"] .transaction-amount   { color: #6FCF85; }
+[data-theme="dark"] .status-completed     { background-color: rgba(26,107,46,0.18); color: #6FCF85; }
+[data-theme="dark"] .status-pending       { background-color: rgba(146,97,10,0.18); color: #F0C070; }
+ 
+/* Report/Search page dark */
+[data-theme="dark"] .listings-section textarea { background-color: #1C1915; color: #F0EBE2; border-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] div[style*="background: white"],
+[data-theme="dark"] div[style*="background: #fff"],
+[data-theme="dark"] div[style*="background-color: white"],
+[data-theme="dark"] div[style*="background-color: #fff"] { background-color: #141210 !important; color: #F0EBE2 !important; border-color: rgba(255,255,255,0.07) !important; }
+ 
+/* Chat dark */
+[data-theme="dark"] .chat-sidebar         { background-color: #141210; border-color: rgba(255,255,255,0.07); }
+[data-theme="dark"] .chat-window          { background-color: #141210; border-color: rgba(255,255,255,0.07); }
+[data-theme="dark"] .chat-messages        { background-color: #0A0907; }
+[data-theme="dark"] .message-bubble.received { background-color: #1C1915; color: #F0EBE2; }
+[data-theme="dark"] .message-bubble.sent     { background-color: #D4A96A; color: #0A0907; }
+[data-theme="dark"] .chat-input           { background-color: #1C1915; border-color: rgba(255,255,255,0.08); color: #F0EBE2; }
+[data-theme="dark"] .chat-send-btn        { background-color: #D4A96A; color: #0A0907; }
+ 
+/* ── THEME TOGGLE BUTTON ── */
+.theme-toggle {
+    width: 44px;
+    height: 24px;
+    border-radius: 999px;
+    background-color: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    position: relative;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 2px;
+    transition: background 0.2s ease;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+.toggle-knob {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #ff6600;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+    line-height: 1;
+}
+[data-theme="dark"] .toggle-knob    { transform: translateX(20px); background-color: #D4A96A; }
+[data-theme="dark"] .theme-toggle   { background-color: rgba(212,169,106,0.15); border-color: rgba(212,169,106,0.3); }
+ 
+/* ── INTERACTIVE IMPROVEMENTS (no design changes) ── */
+.btn-book:hover   { background-color: #e65c00; cursor: pointer; }
+.btn-offer:hover  { background-color: rgba(255,102,0,0.08); cursor: pointer; }
+.post-btn:hover   { background-color: #e65c00; }
+.search-btn:hover { background-color: #e65c00; }
+.btn-nav:hover    { background-color: #e65c00; }
+.login-link:hover { text-decoration: underline; }
+ 
+.listing-card { cursor: pointer; }
+.stat-card    { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.stat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+.service-card:hover .icon-circle { transform: translateY(-4px); transition: transform 0.2s ease; box-shadow: 0 8px 20px rgba(255,102,0,0.2); }
+ 

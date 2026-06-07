@@ -1,182 +1,305 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THOLA — Chat</title>
-  <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THOLA — Chat</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+/* Enhanced Chat Styles */
+.chat-layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: calc(100vh - 140px);
+    background: #f8fafc;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+[data-theme="dark"] .chat-layout { background: #0A0907; }
+
+.chat-sidebar {
+    width: 340px;
+    border-right: 1px solid #e2e8f0;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+[data-theme="dark"] .chat-sidebar { background: #141210; border-color: rgba(255,255,255,0.08); }
+
+.chat-sidebar-header {
+    padding: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    border-bottom: 1px solid #e2e8f0;
+}
+[data-theme="dark"] .chat-sidebar-header { border-color: rgba(255,255,255,0.08); }
+
+.chat-item {
+    padding: 14px 20px;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.chat-item:hover, .chat-item.active {
+    background: #f1f5f9;
+}
+[data-theme="dark"] .chat-item:hover, [data-theme="dark"] .chat-item.active { background: #1C1915; }
+
+.chat-window {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
+[data-theme="dark"] .chat-window { background: #141210; }
+
+.chat-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+[data-theme="dark"] .chat-header { border-color: rgba(255,255,255,0.08); }
+
+.chat-messages {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #f8fafc;
+}
+[data-theme="dark"] .chat-messages { background: #0A0907; }
+
+.message-wrap {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+}
+.message-wrap.sent { align-self: flex-end; }
+.message-wrap.received { align-self: flex-start; }
+
+.message-bubble {
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 15.5px;
+    line-height: 1.4;
+}
+.message-bubble.received {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-bottom-left-radius: 4px;
+}
+.message-bubble.sent {
+    background: #ff6600;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+[data-theme="dark"] .message-bubble.received { background: #1C1915; border-color: rgba(255,255,255,0.1); }
+
+.message-meta {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
+    padding-left: 8px;
+}
+
+.chat-input-row {
+    padding: 16px 24px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    gap: 12px;
+    background: white;
+}
+[data-theme="dark"] .chat-input-row { background: #141210; border-color: rgba(255,255,255,0.08); }
+
+.chat-input {
+    flex: 1;
+    padding: 14px 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 9999px;
+    resize: none;
+    max-height: 120px;
+}
+[data-theme="dark"] .chat-input { background: #1C1915; border-color: rgba(255,255,255,0.1); color: #F0EBE2; }
+
+.chat-send-btn {
+    width: 48px;
+    height: 48px;
+    background: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.offer-bar {
+    padding: 12px 24px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+[data-theme="dark"] .offer-bar { background: #1C1915; border-color: rgba(255,255,255,0.08); }
+</style>
 </head>
 <body data-page="chat">
 
-  <!-- ── NAVBAR ── -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="dashboard.html" class="logo">
-        <span class="logo-dot"></span> THOLA
-      </a>
-      <div class="nav-actions">
+<!-- NAVBAR -->
+<nav class="navbar">
+<div class="nav-container">
+    <a href="index.html" class="logo"><span class="logo-dot"></span> THOLA</a>
+    <div class="nav-actions">
         <a href="dashboard.html" class="nav-link">← Browse</a>
-        <a href="profile.html"   class="nav-link">My Profile</a>
+        <a href="profile.html" class="nav-link">👤 My Profile</a>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <div class="toggle-knob" id="themeKnob">🌙</div>
+            <div class="toggle-knob" id="themeKnob">🌙</div>
         </button>
-      </div>
     </div>
-  </nav>
+</div>
+</nav>
 
-  <!-- ── CHAT LAYOUT ── -->
-  <div class="chat-layout">
-
-    <!-- LEFT: Conversations Sidebar -->
+<div class="chat-layout">
+    <!-- Sidebar -->
     <aside class="chat-sidebar">
-      <div class="chat-sidebar-header">Messages</div>
-      <div class="chat-list">
-
-        <div class="chat-item active">
-          <div class="seller-avatar avatar-sm">TM</div>
-          <div class="chat-item-info">
-            <div class="chat-item-name">Thabo M.</div>
-            <div class="chat-item-preview">Is it still available?</div>
-          </div>
-          <div class="chat-item-time">2m</div>
-          <div class="unread-dot"></div>
+        <div class="chat-sidebar-header">Messages</div>
+        <div class="chat-list" id="chatList">
+            <!-- Populated by JS or kept static -->
+            <div class="chat-item active" onclick="switchChat(0)">
+                <div class="seller-avatar avatar-sm">TM</div>
+                <div class="chat-item-info">
+                    <div class="chat-item-name">Thabo M.</div>
+                    <div class="chat-item-preview">Deal at R320 ✅</div>
+                </div>
+                <div class="chat-item-time">2m</div>
+            </div>
+            <!-- Add more chat items as needed -->
         </div>
-
-        <div class="chat-item">
-          <div class="seller-avatar avatar-sm">NS</div>
-          <div class="chat-item-info">
-            <div class="chat-item-name">Naledi S.</div>
-            <div class="chat-item-preview">Deal confirmed ✅</div>
-          </div>
-          <div class="chat-item-time">1h</div>
-        </div>
-
-        <div class="chat-item">
-          <div class="seller-avatar avatar-sm">SK</div>
-          <div class="chat-item-info">
-            <div class="chat-item-name">Sipho K.</div>
-            <div class="chat-item-preview">Can we do R120?</div>
-          </div>
-          <div class="chat-item-time">3h</div>
-        </div>
-
-        <div class="chat-item">
-          <div class="seller-avatar avatar-sm">LT</div>
-          <div class="chat-item-info">
-            <div class="chat-item-name">Lebo T.</div>
-            <div class="chat-item-preview">Parts arrived, ready!</div>
-          </div>
-          <div class="chat-item-time">1d</div>
-        </div>
-
-      </div>
     </aside>
 
-    <!-- RIGHT: Chat Window -->
+    <!-- Chat Window -->
     <section class="chat-window">
-
-      <!-- Chat Header -->
-      <div class="chat-header">
-        <div class="chat-header-info">
-          <div class="seller-avatar avatar-md">TM</div>
-          <div>
-            <div class="chat-header-name">
-              Thabo M.
-              <span class="verified-badge">✓ Verified</span>
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="seller-avatar avatar-md">TM</div>
+                <div>
+                    <div class="chat-header-name">Thabo M. <span class="verified-badge">✓ Verified</span></div>
+                    <div class="chat-header-sub">Professional House Cleaning • R350/session</div>
+                </div>
             </div>
-            <div class="chat-header-sub">Professional House Cleaning · R350/session</div>
-          </div>
-        </div>
-        <div style="display:flex; align-items:center; gap:8px;">
-          <div class="online-dot"></div>
-          <span style="font-size:12px; color:var(--text-3);">Online</span>
-        </div>
-      </div>
-
-      <!-- Messages Area -->
-      <div class="chat-messages" id="chatMessages">
-
-        <!-- System message -->
-        <div style="text-align:center; font-size:12px; color:var(--text-3); padding:4px 0;">
-          Today · You are now connected with Thabo M.
+            <div style="display:flex; align-items:center; gap:8px;">
+                <div class="online-dot"></div>
+                <span style="font-size:13px; color:#22c55e;">Online</span>
+            </div>
         </div>
 
-        <!-- Received message -->
-        <div class="message-wrap received fade-in">
-          <div class="message-bubble received">
-            Hi! I saw your listing for house cleaning. Is this still available this weekend?
-          </div>
-          <div class="message-meta">Thabo M. · 10:02</div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages added dynamically -->
         </div>
 
-        <!-- Sent message -->
-        <div class="message-wrap sent fade-in">
-          <div class="message-bubble sent">
-            Yes, still available! I can do Saturday or Sunday morning.
-          </div>
-          <div class="message-meta">You · 10:04</div>
+        <!-- Offer Bar -->
+        <div class="offer-bar">
+            <span class="offer-label">💰 Quick Offer:</span>
+            <input type="number" id="offerInput" class="offer-input" placeholder="Amount in R" style="width:140px;">
+            <button class="btn-accept" onclick="sendOffer()">Send Offer</button>
         </div>
 
-        <!-- Received -->
-        <div class="message-wrap received fade-in">
-          <div class="message-bubble received">
-            Saturday works for me. Your listing says R350 — would you consider R300?
-          </div>
-          <div class="message-meta">Thabo M. · 10:06</div>
+        <!-- Message Input -->
+        <div class="chat-input-row">
+            <textarea id="chatInput" class="chat-input" placeholder="Type a message... (Press Enter to send)"></textarea>
+            <button class="chat-send-btn" onclick="sendMessage()">➤</button>
         </div>
-
-        <!-- Sent -->
-        <div class="message-wrap sent fade-in">
-          <div class="message-bubble sent">
-            💰 Offer: R320
-          </div>
-          <div class="message-meta">You · 10:07</div>
-        </div>
-
-        <!-- Received -->
-        <div class="message-wrap received fade-in">
-          <div class="message-bubble received">
-            That works for me. Deal at R320 ✅ I will confirm the address.
-          </div>
-          <div class="message-meta">Thabo M. · 10:09</div>
-        </div>
-
-      </div>
-
-      <!-- Offer Bar -->
-      <div class="offer-bar">
-        <span class="offer-label">💰 Make Offer:</span>
-        <input type="number" class="offer-input" id="offerInput" placeholder="Enter amount in Rands" min="0" />
-        <button class="btn-accept"  onclick="sendOffer()">Send Offer</button>
-        <button class="btn-accept"  onclick="acceptOffer()"  style="background:var(--ok-bg);  color:var(--ok-text);">Accept</button>
-        <button class="btn-decline" onclick="declineOffer()" >Decline</button>
-      </div>
-
-      <!-- Input Row -->
-      <div class="chat-input-row">
-        <textarea
-          class="chat-input"
-          id="chatInput"
-          rows="1"
-          placeholder="Type your message… (Enter to send)"
-        ></textarea>
-        <button class="chat-send-btn" onclick="sendMessage()" aria-label="Send">➤</button>
-      </div>
-
     </section>
-  </div>
+</div>
 
-  <!-- ── FOOTER ── -->
-  <footer>
+<footer>
     <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have. Trust Who You Deal With.</p>
-    <p style="margin-top:10px;">
-      <a href="index.html">Home</a>
-      <a href="dashboard.html">Browse</a>
-      <a href="profile.html">Profile</a>
-      <a href="report.html">Report</a>
-    </p>
-  </footer>
+</footer>
 
-  <script src="../js/main.js"></script>
+<script src="../js/main.js"></script>
+<script>
+// Sample messages
+let messages = [
+    { type: "received", text: "Hi! Is the cleaning service still available this weekend?", time: "10:02" },
+    { type: "sent", text: "Yes, available! Saturday or Sunday morning.", time: "10:04" },
+    { type: "received", text: "Saturday works. Would you do R300?", time: "10:06" },
+    { type: "sent", text: "💰 Best offer: R320", time: "10:07" }
+];
+
+function renderMessages() {
+    const container = document.getElementById('chatMessages');
+    container.innerHTML = `
+        <div style="text-align:center; font-size:13px; color:#64748b; margin:10px 0;">
+            Today • Connected with Thabo M.
+        </div>
+    `;
+    
+    messages.forEach(msg => {
+        const div = document.createElement('div');
+        div.className = `message-wrap ${msg.type}`;
+        div.innerHTML = `
+            <div class="message-bubble ${msg.type}">${msg.text}</div>
+            <div class="message-meta">${msg.type === 'sent' ? 'You' : 'Thabo M.'} · ${msg.time}</div>
+        `;
+        container.appendChild(div);
+    });
+    
+    container.scrollTop = container.scrollHeight;
+}
+
+function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    
+    if (!text) return;
+    
+    const now = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    
+    messages.push({
+        type: "sent",
+        text: text,
+        time: now
+    });
+    
+    renderMessages();
+    input.value = '';
+}
+
+function sendOffer() {
+    const amount = document.getElementById('offerInput').value;
+    if (!amount) return;
+    
+    const now = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    
+    messages.push({
+        type: "sent",
+        text: `💰 Offer: R${amount}`,
+        time: now
+    });
+    
+    renderMessages();
+    document.getElementById('offerInput').value = '';
+}
+
+// Send message on Enter
+document.getElementById('chatInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+    }
+});
+
+// Initialize
+renderMessages();
+</script>
 </body>
 </html>

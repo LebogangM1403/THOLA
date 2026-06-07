@@ -1,101 +1,274 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Listing</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #9face6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THOLA — Post a Listing</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+/* Professional Post Listing Styles */
+body {
+    background: #f8fafc;
+    font-family: inherit;
+}
+[data-theme="dark"] body { background: #0A0907; }
 
-        .post-section {
-            background: white;
-            width: 400px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0,0.2);
-        }
+.post-container {
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
 
-        .post-section h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
+.post-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+    border: 1px solid #e2e8f0;
+}
+[data-theme="dark"] .post-card {
+    background: #141210;
+    border-color: rgba(255,255,255,0.08);
+}
 
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+.post-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+.post-header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0d1e3d;
+    margin: 0;
+}
+[data-theme="dark"] .post-header h1 { color: #F0EBE2; }
 
-        label {
-            margin-top: 10px;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+@media (max-width: 640px) {
+    .form-grid { grid-template-columns: 1fr; }
+}
 
-        input:focus, textarea:focus {
-            border-color: #3498db;
-            box-shadow: 0 0 5px rgba(52,152,219,0.5);
-        }
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #334155;
+    font-size: 14px;
+}
+[data-theme="dark"] .form-group label { color: #A09880; }
 
-        textarea {
-            resize: none ;
-            height: 80px;
-        }
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea,
+[data-theme="dark"] .form-group select {
+    background: #1C1915;
+    border-color: rgba(255,255,255,0.1);
+    color: #F0EBE2;
+}
 
-        button {
-            margin-top: 20px;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: #3498db;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #ff6600;
+    box-shadow: 0 0 0 3px rgba(255,102,0,0.1);
+    outline: none;
+}
 
-        button:hover {
-            background: #2980b9;
-            transition: scale(1.03);
-        }
-    </style>
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.image-upload-area {
+    border: 2px dashed #e2e8f0;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+[data-theme="dark"] .image-upload-area { border-color: rgba(255,255,255,0.15); }
+.image-upload-area:hover { border-color: #ff6600; background: rgba(255,102,0,0.03); }
+
+#imagePreview {
+    max-width: 100%;
+    max-height: 240px;
+    margin-top: 12px;
+    border-radius: 10px;
+    display: none;
+}
+
+.btn-post {
+    width: 100%;
+    background: #ff6600;
+    color: white;
+    border: none;
+    padding: 16px;
+    font-size: 17px;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.2s;
+}
+.btn-post:hover {
+    background: #e65c00;
+    transform: translateY(-2px);
+}
+</style>
 </head>
 <body>
-    <section class="posting-section">
 
-    <h1>Post The Service</h1>
+<!-- NAVBAR -->
+<nav class="navbar">
+<div class="nav-container">
+    <a href="index.html" class="logo"><span class="logo-dot"></span> THOLA</a>
+    <div class="nav-actions">
+        <a href="dashboard.html" class="nav-link">Browse</a>
+        <a href="profile.html" class="nav-link">My Profile</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <div class="toggle-knob" id="themeKnob">🌙</div>
+        </button>
+    </div>
+</div>
+</nav>
 
-    <form>
+<div class="post-container">
+    <div class="post-card">
+        <div class="post-header">
+            <h1>Post a New Listing</h1>
+            <p style="color:#64748b; margin-top:8px;">Reach more customers in your area</p>
+        </div>
 
-        <label>Service Title</label>
-        <input type="text" placeholder="Enter Service title">
-        
-        <label>Description</label>
-        <textarea placeholder="Describe your Service"></textarea>
-        
-        <label>Price</label>
-        <input type="text" placeholder="Enter price">
+        <form id="postForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Listing Type</label>
+                    <select id="listingType" required>
+                        <option value="skill">Skill / Service</option>
+                        <option value="goods">Goods / Product</option>
+                        <option value="job">Job / Opportunity</option>
+                        <option value="request">Request / Need</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="category" placeholder="e.g. House Cleaning, Tutoring" required>
+                </div>
+            </div>
 
-        <label>Location</label>
-        <input type="text" placeholder="Enter your location">
+            <div class="form-group">
+                <label>Listing Title</label>
+                <input type="text" id="title" placeholder="e.g. Professional House Cleaning Service" required>
+            </div>
 
-        <label>Upload Image</label>
-        <input type="file">
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="description" placeholder="Describe what you offer, your experience, and what makes you different..." required></textarea>
+            </div>
 
-        <button type="submit">Post</button>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Price (R)</label>
+                    <input type="number" id="price" placeholder="350" required>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="location" value="Gauteng, South Africa" required>
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label>Upload Image (Optional)</label>
+                <div class="image-upload-area" id="uploadArea">
+                    <p>📸 Click or drag image here</p>
+                    <input type="file" id="imageUpload" accept="image/*" style="display:none;">
+                </div>
+                <img id="imagePreview" alt="Preview">
+            </div>
 
-    </form>
-    </section>
-    
+            <button type="submit" class="btn-post">🚀 Post Listing Now</button>
+        </form>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" style="display:none;">Listing posted successfully!</div>
+
+<script src="../js/main.js"></script>
+<script>
+// Image Preview
+const uploadArea = document.getElementById('uploadArea');
+const imageUpload = document.getElementById('imageUpload');
+const imagePreview = document.getElementById('imagePreview');
+
+uploadArea.addEventListener('click', () => imageUpload.click());
+
+imageUpload.addEventListener('change', function(e) {
+    if (e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+            imagePreview.src = ev.target.result;
+            imagePreview.style.display = 'block';
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    }
+});
+
+// Form Submit - Save to localStorage
+document.getElementById('postForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const listing = {
+        id: Date.now(),
+        type: document.getElementById('listingType').value,
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value,
+        price: document.getElementById('price').value,
+        location: document.getElementById('location').value,
+        category: document.getElementById('category').value,
+        image: imagePreview.src || null,
+        date: new Date().toISOString(),
+        views: 0,
+        deals: 0
+    };
+
+    // Save to localStorage
+    let listings = JSON.parse(localStorage.getItem('thola_listings') || '[]');
+    listings.unshift(listing); // Add to beginning
+    localStorage.setItem('thola_listings', JSON.stringify(listings));
+
+    // Show success message
+    const toast = document.getElementById('toast');
+    toast.textContent = "✅ Listing posted successfully!";
+    toast.style.display = 'block';
+    toast.style.background = '#22c55e';
+
+    // Reset form
+    this.reset();
+    imagePreview.style.display = 'none';
+
+    // Redirect to dashboard after 1.5 seconds
+    setTimeout(() => {
+        window.location.href = 'dashboard.html';
+    }, 1500);
+});
+</script>
 </body>
 </html>
