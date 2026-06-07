@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-<<<<<<< Updated upstream
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Listing</title>
-=======
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THOLA — Post a Listing</title>
@@ -137,7 +132,6 @@ textarea {
     transform: translateY(-2px);
 }
 </style>
->>>>>>> Stashed changes
 </head>
 <body>
 
@@ -260,15 +254,11 @@ document.getElementById('postForm').addEventListener('submit', function(e) {
     listings.unshift(listing); // Add to beginning
     localStorage.setItem('thola_listings', JSON.stringify(listings));
 
-<<<<<<< Updated upstream
-        <button type="submit">Posting</button>
-=======
     // Show success message
     const toast = document.getElementById('toast');
     toast.textContent = "✅ Listing posted successfully!";
     toast.style.display = 'block';
     toast.style.background = '#22c55e';
->>>>>>> Stashed changes
 
     // Reset form
     this.reset();
