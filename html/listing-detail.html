@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
+<<<<<<< Updated upstream
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listing Details</title>
@@ -22,6 +23,284 @@
             <button>Contact Seller</button>
         </div>
     </section>
+=======
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THOLA — Listing Details</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+/* Professional Listing Detail Styles */
+.detail-page {
+    background: #f8fafc;
+    min-height: 100vh;
+}
+[data-theme="dark"] .detail-page { background: #0A0907; }
+
+.back-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px 0;
+}
+
+.back-link {
+    color: #ff6600;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.detail-container {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 28px;
+}
+
+.detail-main {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+[data-theme="dark"] .detail-main {
+    background: #141210;
+    border-color: rgba(255,255,255,0.08);
+}
+
+.detail-image {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    background: #e2e8f0;
+}
+[data-theme="dark"] .detail-image { background: #1C1915; }
+
+.detail-body {
+    padding: 32px;
+}
+
+.detail-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0d1e3d;
+    margin: 0 0 12px 0;
+}
+[data-theme="dark"] .detail-title { color: #F0EBE2; }
+
+.detail-description {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+[data-theme="dark"] .detail-description { color: #A09880; }
+
+.detail-info {
+    display: flex;
+    justify-content: space-between;
+    background: #f8fafc;
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+[data-theme="dark"] .detail-info { background: #1C1915; }
+
+.detail-price {
+    font-size: 26px;
+    font-weight: 800;
+    color: #ff6600;
+}
+[data-theme="dark"] .detail-price { color: #D4A96A; }
+
+.action-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.action-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid #e2e8f0;
+}
+[data-theme="dark"] .action-card {
+    background: #141210;
+    border-color: rgba(255,255,255,0.08);
+}
+
+.btn-primary {
+    width: 100%;
+    background: #ff6600;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 12px;
+}
+.btn-primary:hover { background: #e65c00; }
+
+.btn-secondary {
+    width: 100%;
+    background: transparent;
+    color: #ff6600;
+    border: 2px solid #ff6600;
+    padding: 13px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #22c55e;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 9999px;
+    font-weight: 600;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 1000;
+}
+</style>
+</head>
+<body class="detail-page">
+
+<!-- NAVBAR -->
+<nav class="navbar">
+<div class="nav-container">
+    <a href="index.html" class="logo"><span class="logo-dot"></span> THOLA</a>
+    <div class="nav-actions">
+        <a href="dashboard.html" class="nav-link">← Browse</a>
+        <a href="profile.html" class="nav-link">👤 Profile</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <div class="toggle-knob" id="themeKnob">🌙</div>
+        </button>
+    </div>
+</div>
+</nav>
+
+<!-- Back Button -->
+<div class="back-bar">
+    <a href="dashboard.html" class="back-link">← Back to Listings</a>
+</div>
+
+<div class="detail-container">
+    <!-- Main Content -->
+    <div class="detail-main">
+        <img id="detailImage" class="detail-image" src="https://via.placeholder.com/800x320/ffe6d5/0d1e3d?text=Service+Image" alt="Listing Image">
+        
+        <div class="detail-body">
+            <h1 id="detailTitle" class="detail-title">Professional House Cleaning</h1>
+            <p id="detailDescription" class="detail-description">
+                Reliable and thorough cleaning service for homes and offices. We bring all equipment and eco-friendly products.
+            </p>
+            
+            <div class="detail-info">
+                <div>
+                    <strong>Price</strong><br>
+                    <span id="detailPrice" class="detail-price">R350</span>
+                </div>
+                <div>
+                    <strong>Location</strong><br>
+                    <span id="detailLocation">Gauteng, South Africa</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Actions -->
+    <div class="action-sidebar">
+        <div class="action-card">
+            <button onclick="contactSeller()" class="btn-primary">💬 Message Seller</button>
+            <button onclick="bookNow()" class="btn-primary">📅 Book Now</button>
+            <button onclick="makeOffer()" class="btn-secondary">Make an Offer</button>
+        </div>
+
+        <div class="action-card">
+            <h4 style="margin-top:0;">Safety &amp; Trust</h4>
+            <p style="font-size:14px; color:#64748b;">
+                ✅ Verified Provider<br>
+                ✅ Payment held until service complete<br>
+                ✅ 24-hour response guarantee
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast">✅ Action completed!</div>
+
+<script src="../js/main.js"></script>
+<script>
+// Load listing from localStorage or URL
+function loadListing() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const listingId = urlParams.get('id');
     
+    let listings = JSON.parse(localStorage.getItem('thola_listings') || '[]');
+    let listing = listings.find(l => l.id == listingId);
+>>>>>>> Stashed changes
+    
+    // Fallback default if no listing found
+    if (!listing) {
+        listing = {
+            title: "Professional House Cleaning",
+            description: "Thorough home and office cleaning service. Eco-friendly products and reliable service.",
+            price: "350",
+            location: "Gauteng, South Africa",
+            image: "https://via.placeholder.com/800x320/ffe6d5/0d1e3d?text=Cleaning+Service"
+        };
+    }
+
+    document.getElementById('detailTitle').textContent = listing.title || "Service Title";
+    document.getElementById('detailDescription').textContent = listing.description || "No description available.";
+    document.getElementById('detailPrice').textContent = `R${listing.price || '350'}`;
+    document.getElementById('detailLocation').textContent = listing.location || "South Africa";
+    
+    if (listing.image) {
+        document.getElementById('detailImage').src = listing.image;
+    }
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 3000);
+}
+
+function contactSeller() {
+    showToast("✅ Message sent to seller!");
+    setTimeout(() => window.location.href = "chat.html", 1200);
+}
+
+function bookNow() {
+    showToast("✅ Booking request sent!");
+    setTimeout(() => window.location.href = "chat.html", 1200);
+}
+
+function makeOffer() {
+    const offer = prompt("Enter your offer amount (R):");
+    if (offer) {
+        showToast(`💰 Offer of R${offer} sent!`);
+        setTimeout(() => window.location.href = "chat.html", 1500);
+    }
+}
+
+// Initialize
+loadListing();
+</script>
 </body>
 </html>

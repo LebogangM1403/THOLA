@@ -1,89 +1,112 @@
 # THOLA
-### Find What You Need. Offer What You Have. Trust Who You Deal With.
+
+## Find What You Need. Offer What You Have. Trust Who You Deal With.
+
+THOLA is a frontend prototype of a peer-to-peer skills and goods exchange platform designed to empower South African youth. The platform allows users to explore opportunities to offer skills, services, products, and requests within their communities.
+
+This project was developed as part of a frontend web development assignment, focusing on user experience, interface design, responsiveness, and client-side functionality.
 
 ---
 
-## About
-THOLA is a peer-to-peer skill and goods exchange platform built 
-for South African youth. It allows anyone to post a skill or goods, 
-connect with people who need it, negotiate a fair price, and build 
-a trusted reputation no CV required.
+## Project Objective
+
+The goal of this project was to design and develop the **frontend interface** of THOLA using HTML, CSS, and JavaScript.
+
+The project demonstrates:
+
+* Responsive web design
+* User-friendly navigation
+* Form validation
+* Client-side data handling
+* Interactive user interfaces
+* Modern web development practices
 
 ---
 
-## Built With
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
-- LocalStorage API
-- Browser GeoLocation API
-- FileReader API
+## Technologies Used
+
+* HTML5
+* CSS3
+* JavaScript (Vanilla JS)
 
 ---
 
-## Pages
-- index.html — Landing page
-- register.html — Sign up & verification
-- login.html — Returning user login
-- dashboard.html — Home feed
-- post-listing.html — Post a skill or goods
-- listing-detail.html — View a listing
-- chat.html — Negotiation chat
-- profile.html — User profile
-- search.html — Search listings
-- report.html — Emergency report
+## Live Demo
+
+Website: https://tholagala.netlify.app
 
 ---
 
-## Team
-- Lebogang — Dashboard
-- Thapelo — Landing Page, Report Page & Global CSS
-- Lutendo — Register & Login Pages
-- Tsholofelo — Chat & Search Pages
-- Arabi — Post Listing & Listing Detail Pages
+## Pages Developed
+
+| Page           | Description                                      |
+| -------------- | ------------------------------------------------ |
+| Landing Page   | Introduction to the platform                     |
+| Register Page  | User registration and verification               |
+| Login Page     | User authentication interface                    |
+| Dashboard      | Main browsing experience                         |
+| Post Listing   | Create a skill, product, job, or request listing |
+| Listing Detail | View listing information                         |
+| Chat Page      | Messaging and negotiation interface              |
+| Search Page    | Search and filtering functionality               |
+| Profile Page   | User profile management                          |
+| Report Page    | Report listings or users                         |
 
 ---
 
-## How to Run
-1. Clone this repo:
-   git clone SSH Link
-2. Open the html folder
-3. Open index.html in your browser
-4. No installation needed
+## Team Members
+
+| Team Member | Responsibility                            |
+| ----------- | ----------------------------------------- |
+| Lebogang    | Dashboard                                 |
+| Thapelo     | Landing Page, Report Page, Global Styling |
+| Lutendo     | Register and Login Pages                  |
+| Tsholofelo  | Chat and Search Pages                     |
+| Arabi       | Post Listing and Listing Detail Pages     |
 
 ---
 
-## Folder Structure
+## Project Structure
+
+```text
 thola-website/
 ├── html/
-│   ├── index.html
-│   ├── register.html
-│   ├── login.html
-│   ├── dashboard.html
-│   ├── post-listing.html
-│   ├── listing-detail.html
-│   ├── chat.html
-│   ├── profile.html
-│   ├── search.html
-│   └── report.html
 ├── css/
-│   └── style.css
 ├── js/
-│   └── main.js
 ├── images/
 └── README.md
+```
 
 ---
 
-## Contributing
-1. Create your branch — git checkout -b your-branch-name
-2. Do your work on your branch only
-3. Push your branch — git push origin your-branch-name
-4. Open a Pull Request on GitHub
-5. Wait for review and approve
-6. Do NOT push directly to main
+## Running the Project
+
+1. Clone the repository.
+
+```bash
+git clone <repository-link>
+```
+
+2. Open the project folder.
+
+3. Launch `index.html` in your browser or use Live Server.
+
+No installation or backend setup is required.
 
 ---
 
 ## Project Status
-🚧 In Progress — HTML phase week 1
+
+✅ Frontend Development Complete
+
+The project successfully delivers the required frontend pages, styling, navigation, and client-side interactions as specified in the project requirements.
+
+---
+
+## Note
+
+This project focuses on frontend development only. Backend services, databases, payment systems, and production deployment features are outside the scope of this implementation.
+
+---
+
+Built for South African youth entrepreneurship and opportunity creation.

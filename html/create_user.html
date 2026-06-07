@@ -1,222 +1,293 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Account – Thola Platform</title>
-    <meta name="description" content="Create a new account on the Thola platform. Join the community and start discovering local services.">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THOLA — Create Account</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.auth-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fafc, #e0f2fe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+[data-theme="dark"] .auth-page { background: linear-gradient(135deg, #0A0907, #1C1915); }
+
+.auth-card {
+    background: white;
+    max-width: 440px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    padding: 40px 32px;
+    border: 1px solid #e2e8f0;
+}
+[data-theme="dark"] .auth-card {
+    background: #141210;
+    border-color: rgba(255,255,255,0.08);
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: #0d1e3d;
+    margin-bottom: 8px;
+}
+[data-theme="dark"] .auth-title { color: #F0EBE2; }
+
+.auth-subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 32px;
+}
+[data-theme="dark"] .auth-subtitle { color: #A09880; }
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.auth-input {
+    padding: 14px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+[data-theme="dark"] .auth-input {
+    background: #1C1915;
+    border-color: rgba(255,255,255,0.1);
+    color: #F0EBE2;
+}
+
+.auth-input:focus {
+    border-color: #ff6600;
+    box-shadow: 0 0 0 3px rgba(255,102,0,0.1);
+    outline: none;
+}
+
+.auth-button {
+    background: #ff6600;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s;
+}
+.auth-button:hover {
+    background: #e65c00;
+    transform: translateY(-1px);
+}
+
+.error-msg {
+    color: #ef4444;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 24px;
+    color: #64748b;
+}
+.auth-link {
+    color: #ff6600;
+    font-weight: 600;
+    text-decoration: none;
+}
+.auth-link:hover { text-decoration: underline; }
+</style>
 </head>
 <body>
-    <main class="auth-page">
-        <!-- Step 1: Register Form -->
-        <section class="auth-card" id="register-card">
-            <h1 class="auth-title">Create Account</h1>
-            <p class="auth-subtitle">Join us and start exploring</p>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+<div class="nav-container">
+    <a href="index.html" class="logo"><span class="logo-dot"></span> THOLA</a>
+    <div class="nav-actions">
+        <a href="login.html" class="nav-link">Log In</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <div class="toggle-knob" id="themeKnob">🌙</div>
+        </button>
+    </div>
+</div>
+</nav>
+
+<main class="auth-page">
+    <!-- Register Card -->
+    <section class="auth-card" id="register-card">
+        <h1 class="auth-title">Create Account</h1>
+        <p class="auth-subtitle">Join South Africa’s trusted local marketplace</p>
+        
+        <form id="register-form" class="auth-form">
+            <input type="text" id="name" placeholder="Full Name" required autocomplete="name" class="auth-input" />
+            <input type="email" id="email" placeholder="Email address" required autocomplete="email" class="auth-input" />
+            <input type="password" id="password" placeholder="Create a strong password" required autocomplete="new-password" class="auth-input" />
             
-            <form id="register-form" class="auth-form">
-                <label for="name" class="sr-only">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Full Name" required autocomplete="name" class="auth-input" />
-
-                <label for="email" class="sr-only">Email address</label>
-                <input type="email" id="email" name="email" placeholder="Email address" required autocomplete="email" class="auth-input" />
-
-                <label for="password" class="sr-only">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password" required autocomplete="new-password" class="auth-input" />
-
-                <div id="register-error" class="error-msg" style="display: none; color: #ff3333; font-size: 14px; font-weight: 600; text-align: left; margin: -8px 0 8px 0;"></div>
-
-                <button type="submit" class="auth-button" id="register-submit">Get Verification Code</button>
-            </form>
-            <p class="auth-switch">
-                Already have an account?
-                <a href="login.html" class="auth-link">Log in</a>
-            </p>
-        </section>
-
-        <!-- Step 2: OTP Verification Card (Hidden by default) -->
-        <section class="auth-card" id="otp-card" style="display: none;">
-            <h1 class="auth-title">Verify Email</h1>
-            <p class="auth-subtitle" id="otp-subtitle">We sent a 6-digit code to your email</p>
+            <div id="register-error" class="error-msg"></div>
             
-            <form id="otp-form" class="auth-form">
-                <label for="otp" class="sr-only">Verification Code</label>
-                <input type="text" id="otp" name="otp" placeholder="6-Digit Code" required maxlength="6" pattern="\d{6}" class="auth-input" style="letter-spacing: 8px; text-align: center; font-size: 24px; font-weight: 700;" />
+            <button type="submit" class="auth-button" id="register-submit">Get Verification Code</button>
+        </form>
 
-                <div id="otp-error" class="error-msg" style="display: none; color: #ff3333; font-size: 14px; font-weight: 600; text-align: left; margin: -8px 0 8px 0;"></div>
+        <p class="auth-switch">
+            Already have an account? 
+            <a href="login.html" class="auth-link">Log in</a>
+        </p>
+    </section>
 
-                <button type="submit" class="auth-button" id="otp-submit">Verify & Register</button>
-            </form>
+    <!-- OTP Card -->
+    <section class="auth-card" id="otp-card" style="display: none;">
+        <h1 class="auth-title">Verify Your Email</h1>
+        <p class="auth-subtitle" id="otp-subtitle">We sent a 6-digit code to your email</p>
+        
+        <form id="otp-form" class="auth-form">
+            <input type="text" id="otp" placeholder="Enter 6-digit code" maxlength="6" required class="auth-input" style="text-align:center; font-size:28px; letter-spacing:8px; font-weight:700;" />
             
-            <p class="auth-switch">
-                Didn't receive a code?
-                <a href="#" id="resend-otp-link" class="auth-link">Resend Code</a>
-            </p>
-        </section>
-    </main>
+            <div id="otp-error" class="error-msg"></div>
+            
+            <button type="submit" class="auth-button" id="otp-submit">Verify & Create Account</button>
+        </form>
 
-    <!-- Include the local ignored credentials file and EmailJS SDK client library -->
-    <script src="../js/credentials.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const registerForm = document.getElementById('register-form');
-            const otpForm = document.getElementById('otp-form');
-            const registerCard = document.getElementById('register-card');
-            const otpCard = document.getElementById('otp-card');
-            const registerError = document.getElementById('register-error');
-            const otpError = document.getElementById('otp-error');
-            const otpSubtitle = document.getElementById('otp-subtitle');
-            const resendOtpLink = document.getElementById('resend-otp-link');
-            const registerSubmit = document.getElementById('register-submit');
-            const otpSubmit = document.getElementById('otp-submit');
+        <p class="auth-switch">
+            Didn't receive the code? 
+            <a href="#" id="resend-otp-link" class="auth-link">Resend Code</a>
+        </p>
+    </section>
+</main>
 
-            let userEmail = '';
-            let userName = '';
-            let userPassword = '';
-            let generatedOtp = '';
+<script src="../js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// ===================== REGISTRATION LOGIC =====================
+let userEmail = '', userName = '', userPassword = '', generatedOtp = '';
 
-            // Initialize EmailJS with your public API key
-            if (typeof EMAILJS_PUBLIC_KEY !== 'undefined' && EMAILJS_PUBLIC_KEY) {
-                emailjs.init({
-                    publicKey: EMAILJS_PUBLIC_KEY,
-                });
-            }
+const registerForm = document.getElementById('register-form');
+const otpForm = document.getElementById('otp-form');
+const registerCard = document.getElementById('register-card');
+const otpCard = document.getElementById('otp-card');
+const registerError = document.getElementById('register-error');
+const otpError = document.getElementById('otp-error');
+const otpSubtitle = document.getElementById('otp-subtitle');
 
-            // Simple SHA-256 password hashing helper function
-            async function hashPassword(password) {
-                const encoder = new TextEncoder();
-                const data = encoder.encode(password);
-                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-                const hashArray = Array.from(new Uint8Array(hashBuffer));
-                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            }
+function getDatabase() {
+    return JSON.parse(localStorage.getItem('thola_database') || '[]');
+}
 
-            // Get local database from localStorage
-            function getDatabase() {
-                const localData = localStorage.getItem('thola_database');
-                if (localData) {
-                    return JSON.parse(localData);
-                }
-                return [];
-            }
+function saveDatabase(users) {
+    localStorage.setItem('thola_database', JSON.stringify(users));
+}
 
-            // Save database to localStorage
-            function saveDatabase(users) {
-                localStorage.setItem('thola_database', JSON.stringify(users));
-            }
+registerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    registerError.textContent = '';
 
-            registerForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                registerError.style.display = 'none';
-                
-                userName = document.getElementById('name').value.trim();
-                userEmail = document.getElementById('email').value.trim().toLowerCase();
-                userPassword = document.getElementById('password').value;
+    userName = document.getElementById('name').value.trim();
+    userEmail = document.getElementById('email').value.trim().toLowerCase();
+    userPassword = document.getElementById('password').value;
 
-                // Validate if user exists
-                const users = getDatabase();
-                const userExists = users.some(u => u.email.toLowerCase() === userEmail);
-                if (userExists) {
-                    registerError.innerText = 'Email address already registered';
-                    registerError.style.display = 'block';
-                    return;
-                }
+    if (userPassword.length < 6) {
+        registerError.textContent = 'Password must be at least 6 characters';
+        return;
+    }
 
-                // Verify keys are configured
-                if (typeof EMAILJS_PUBLIC_KEY === 'undefined' || EMAILJS_PUBLIC_KEY.includes('your_public_key')) {
-                    registerError.innerText = 'Please configure your EmailJS API keys in js/credentials.js';
-                    registerError.style.display = 'block';
-                    return;
-                }
+    // Check if email exists
+    const users = getDatabase();
+    if (users.some(u => u.email.toLowerCase() === userEmail)) {
+        registerError.textContent = 'This email is already registered';
+        return;
+    }
 
-                registerSubmit.disabled = true;
-                registerSubmit.innerText = 'Sending OTP...';
+    const submitBtn = document.getElementById('register-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending code...';
 
-                // Generate random 6-digit OTP
-                generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
 
-                try {
-                    // Send Email using EmailJS service
-                    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                        to_name: userName,
-                        to_email: userEmail,
-                        email: userEmail,
-                        user_email: userEmail,
-                        otp_code: generatedOtp,
-                        otp: generatedOtp,
-                        code: generatedOtp,
-                        message: generatedOtp
-                    }).then(() => {
-                        otpSubtitle.innerHTML = `We sent a 6-digit code to <strong style="color: #ff6600;">${userEmail}</strong>`;
-                        registerCard.style.display = 'none';
-                        otpCard.style.display = 'block';
-                        registerSubmit.disabled = false;
-                        registerSubmit.innerText = 'Get Verification Code';
-                    }).catch(err => {
-                        registerError.innerText = 'Failed to send OTP: ' + (err.text || JSON.stringify(err));
-                        registerError.style.display = 'block';
-                        registerSubmit.disabled = false;
-                        registerSubmit.innerText = 'Get Verification Code';
-                    });
-                } catch (err) {
-                    registerError.innerText = 'EmailJS connection error. Please try again.';
-                    registerError.style.display = 'block';
-                    console.error(err);
-                    registerSubmit.disabled = false;
-                    registerSubmit.innerText = 'Get Verification Code';
-                }
+    // Try to send email (EmailJS)
+    try {
+        if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY) {
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                to_name: userName,
+                to_email: userEmail,
+                otp_code: generatedOtp
             });
+        } else {
+            console.log("EmailJS not configured - using demo mode");
+        }
 
-            otpForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                otpError.style.display = 'none';
-                const otpVal = document.getElementById('otp').value.trim();
+        otpSubtitle.innerHTML = `Code sent to <strong>${userEmail}</strong>`;
+        registerCard.style.display = 'none';
+        otpCard.style.display = 'block';
+    } catch (err) {
+        console.error(err);
+        registerError.textContent = 'Failed to send code. Please try again.';
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get Verification Code';
+    }
+});
 
-                otpSubmit.disabled = true;
-                otpSubmit.innerText = 'Verifying...';
+otpForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    otpError.textContent = '';
 
-                if (otpVal !== generatedOtp) {
-                    otpError.innerText = 'Invalid verification code.';
-                    otpError.style.display = 'block';
-                    otpSubmit.disabled = false;
-                    otpSubmit.innerText = 'Verify & Register';
-                    return;
-                }
+    const enteredOtp = document.getElementById('otp').value.trim();
 
-                try {
-                    // Hash Password & Persist
-                    const hashedPassword = await hashPassword(userPassword);
-                    const users = getDatabase();
-                    
-                    users.push({
-                        name: userName,
-                        email: userEmail,
-                        password: hashedPassword,
-                        registeredAt: new Date().toISOString()
-                    });
+    if (enteredOtp !== generatedOtp) {
+        otpError.textContent = 'Incorrect verification code';
+        return;
+    }
 
-                    saveDatabase(users);
-                    alert('Verification successful! You will be redirected to the Login page.');
-                    window.location.href = 'login.html';
-                } catch (err) {
-                    otpError.innerText = 'Error saving account info. Please try again.';
-                    otpError.style.display = 'block';
-                    console.error(err);
-                } finally {
-                    otpSubmit.disabled = false;
-                    otpSubmit.innerText = 'Verify & Register';
-                }
-            });
+    const submitBtn = document.getElementById('otp-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating account...';
 
-            resendOtpLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                registerForm.dispatchEvent(new Event('submit'));
-            });
+    try {
+        const hashedPassword = await hashPassword(userPassword); // using your existing function or simple hash
+
+        const users = getDatabase();
+        users.push({
+            name: userName,
+            email: userEmail,
+            password: hashedPassword,
+            role: "Lister",
+            registeredAt: new Date().toISOString()
         });
-    </script>
+
+        saveDatabase(users);
+
+        alert('✅ Account created successfully!');
+        window.location.href = 'login.html';
+    } catch (err) {
+        otpError.textContent = 'Error creating account. Please try again.';
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Verify & Create Account';
+    }
+});
+
+document.getElementById('resend-otp-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    registerCard.style.display = 'block';
+    otpCard.style.display = 'none';
+});
+
+// Simple password hash (fallback)
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hash = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+</script>
 </body>
 </html>
