@@ -1,29 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-<<<<<<< Updated upstream
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listing Details</title>
-</head>
-<body>
-
-    <section class="listing container">
-
-        <img src="../images/Service.jpg" alt="Service Image">
-
-        <div>
-
-            <h1 id="title">Graphic Design</h1>
-
-            <h3 id="description">Type: Skill</p>
-
-            <h3 id="price">Price: R150</h2>
-
-            <button>Contact Seller</button>
-        </div>
-    </section>
-=======
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THOLA — Listing Details</title>
@@ -251,7 +228,6 @@ function loadListing() {
     
     let listings = JSON.parse(localStorage.getItem('thola_listings') || '[]');
     let listing = listings.find(l => l.id == listingId);
->>>>>>> Stashed changes
     
     // Fallback default if no listing found
     if (!listing) {
