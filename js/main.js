@@ -179,19 +179,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    /* Global User Name Navigation Customisation */
-    if (currentUser) {
-        const profileNavLink = document.getElementById('profileNavLink');
-        if (profileNavLink) {
-            profileNavLink.innerHTML = `&#128100; ${currentUser.name}`;
-        }
-    }
-
     /* Dashboard customisations — original logic */
     if (isDashboard && currentUser) {
         const welcomeTitle = document.querySelector('.welcome-text h2');
         if (welcomeTitle) {
             welcomeTitle.innerHTML = `Welcome back, ${currentUser.name} &#128075;`;
+        }
+        const profileLink = document.querySelector('.login-link');
+        if (profileLink) {
+            profileLink.innerHTML = `&#128100; ${currentUser.name}`;
         }
     }
 
