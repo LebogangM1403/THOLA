@@ -1098,4 +1098,41 @@ footer a {
 .stat-card    { transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .stat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
 .service-card:hover .icon-circle { transform: translateY(-4px); transition: transform 0.2s ease; box-shadow: 0 8px 20px rgba(255,102,0,0.2); }
- 
+
+/* ── RESPONSIVE MEDIA QUERIES ── */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
+    }
+    .nav-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .hero-container h1 {
+        font-size: 32px;
+    }
+    .hero-container p {
+        font-size: 16px;
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .listings-grid, .my-listings-grid {
+        grid-template-columns: 1fr;
+    }
+    .profile-header-container, .profile-content, .chat-layout {
+        flex-direction: column;
+    }
+    .chat-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    .stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

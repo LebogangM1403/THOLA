@@ -10,8 +10,24 @@ const DUMMY_USERS = [
 
 function loadDummyData() {
     const existing = localStorage.getItem('thola_database');
-    if (!existing || JSON.parse(existing).length === 0) {
-        localStorage.setItem('thola_database', JSON.stringify(DUMMY_USERS));
+    let db = [];
+    if (existing) {
+        try {
+            db = JSON.parse(existing);
+        } catch(e) {}
+    }
+    
+    // Check if dummy users are missing and add them if necessary
+    let updated = false;
+    DUMMY_USERS.forEach(dummy => {
+        if (!db.find(u => u.email === dummy.email)) {
+            db.push(dummy);
+            updated = true;
+        }
+    });
+
+    if (updated || !existing) {
+        localStorage.setItem('thola_database', JSON.stringify(db));
     }
 }
 
