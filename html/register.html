@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account – Thola Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+        .auth-logo { font-size:28px; font-weight:800; color:#fff; letter-spacing:0.06em; margin-bottom:4px; display:block; }
+        .auth-logo span { color:#ff6600; }
+        .auth-tagline { font-size:12px; color:rgba(255,255,255,0.35); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:28px; display:block; }
+        .input-wrapper { position:relative; }
+        .input-icon { position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:15px; pointer-events:none; opacity:0.45; }
+        .auth-input.has-icon { padding-left:44px; }
+        .step-indicator { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:28px; }
+        .step-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.2); transition:all 0.3s ease; }
+        .step-dot.active { background:#ff6600; width:24px; border-radius:4px; }
+        .step-dot.done { background:#22c55e; }
+        .otp-input-large { letter-spacing:10px; text-align:center; font-size:28px; font-weight:800; }
+        .security-badges { display:flex; justify-content:center; gap:16px; margin-top:20px; flex-wrap:wrap; }
+        .security-badge { font-size:11px; color:rgba(255,255,255,0.3); display:flex; align-items:center; gap:4px; }
+    </style>
+</head>
+<body>
+    <main class="auth-page">
+        <section class="auth-card" id="register-card">
+            <span class="auth-logo">THOLA<span>.</span></span>
+            <span class="auth-tagline">Join South Africa's skill exchange</span>
+            <div class="step-indicator"><div class="step-dot active"></div><div class="step-dot"></div></div>
+            <h1 class="auth-title">Create Account</h1>
+            <p class="auth-subtitle">Join us and start exploring</p>
+            <form id="register-form" class="auth-form">
+                <label for="name" class="sr-only">Full Name</label>
+                <div class="input-wrapper"><span class="input-icon">👤</span><input type="text" id="name" name="name" placeholder="Full Name" required autocomplete="name" class="auth-input has-icon" /></div>
+                <label for="email" class="sr-only">Email address</label>
+                <div class="input-wrapper"><span class="input-icon">✉️</span><input type="email" id="email" name="email" placeholder="Email address" required autocomplete="email" class="auth-input has-icon" /></div>
+                <label for="password" class="sr-only">Password</label>
+                <div class="input-wrapper"><span class="input-icon">🔒</span><input type="password" id="password" name="password" placeholder="Password" required autocomplete="new-password" class="auth-input has-icon" /></div>
+                <div id="register-error" class="error-msg" style="display:none;color:#ff3333;font-size:14px;font-weight:600;text-align:left;margin:-8px 0 8px 0;"></div>
+                <button type="submit" class="auth-button" id="register-submit">Get Verification Code</button>
+            </form>
+            <p class="auth-switch">Already have an account? <a href="login.html" class="auth-link">Log in</a></p>
+            <div class="security-badges">
+                <span class="security-badge">🔒 Encrypted</span>
+                <span class="security-badge">✅ SA ID Verified</span>
+                <span class="security-badge">🛡️ Safe & Trusted</span>
+            </div>
+        </section>
+        <section class="auth-card" id="otp-card" style="display:none;">
+            <span class="auth-logo">THOLA<span>.</span></span>
+            <span class="auth-tagline">One last step</span>
+            <div class="step-indicator"><div class="step-dot done"></div><div class="step-dot active"></div></div>
+            <h1 class="auth-title">Verify Email</h1>
+            <p class="auth-subtitle" id="otp-subtitle">We sent a 6-digit code to your email</p>
+            <form id="otp-form" class="auth-form">
+                <label for="otp" class="sr-only">Verification Code</label>
+                <input type="text" id="otp" name="otp" placeholder="000000" required maxlength="6" pattern="\d{6}" class="auth-input otp-input-large" />
+                <div id="otp-error" class="error-msg" style="display:none;color:#ff3333;font-size:14px;font-weight:600;text-align:left;margin:-8px 0 8px 0;"></div>
+                <button type="submit" class="auth-button" id="otp-submit">Verify & Create Account</button>
+            </form>
+            <p class="auth-switch">Didn't receive a code? <a href="#" id="resend-otp-link" class="auth-link">Resend Code</a></p>
+        </section>
+    </main>
+    <script src="../js/main.js"></script>
+    <script src="../js/credentials.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const registerForm=document.getElementById('register-form'),otpForm=document.getElementById('otp-form'),registerCard=document.getElementById('register-card'),otpCard=document.getElementById('otp-card'),registerError=document.getElementById('register-error'),otpError=document.getElementById('otp-error'),otpSubtitle=document.getElementById('otp-subtitle'),resendOtpLink=document.getElementById('resend-otp-link'),registerSubmit=document.getElementById('register-submit'),otpSubmit=document.getElementById('otp-submit');
+            let userEmail='',userName='',userPassword='',generatedOtp='';
+            if(typeof EMAILJS_PUBLIC_KEY!=='undefined'&&EMAILJS_PUBLIC_KEY){emailjs.init({publicKey:EMAILJS_PUBLIC_KEY});}
+            async function hashPassword(p){const e=new TextEncoder(),d=e.encode(p),h=await crypto.subtle.digest('SHA-256',d),a=Array.from(new Uint8Array(h));return a.map(b=>b.toString(16).padStart(2,'0')).join('');}
+            function getDatabase(){const d=localStorage.getItem('thola_database');return d?JSON.parse(d):[];}
+            function saveDatabase(u){localStorage.setItem('thola_database',JSON.stringify(u));}
+            registerForm.addEventListener('submit',async(e)=>{
+                e.preventDefault();registerError.style.display='none';
+                userName=document.getElementById('name').value.trim();
+                userEmail=document.getElementById('email').value.trim().toLowerCase();
+                userPassword=document.getElementById('password').value;
+                const users=getDatabase();
+                if(users.some(u=>u.email.toLowerCase()===userEmail)){registerError.innerText='Email address already registered';registerError.style.display='block';return;}
+                if(typeof EMAILJS_PUBLIC_KEY==='undefined'||EMAILJS_PUBLIC_KEY.includes('your_public_key')){registerError.innerText='Please configure your EmailJS API keys in js/credentials.js';registerError.style.display='block';return;}
+                registerSubmit.disabled=true;registerSubmit.innerText='Sending OTP...';
+                generatedOtp=Math.floor(100000+Math.random()*900000).toString();
+                try{emailjs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_ID,{to_name:userName,to_email:userEmail,email:userEmail,user_email:userEmail,otp_code:generatedOtp,otp:generatedOtp,code:generatedOtp,message:generatedOtp}).then(()=>{otpSubtitle.innerHTML=`We sent a 6-digit code to <strong style="color:#ff6600;">${userEmail}</strong>`;registerCard.style.display='none';otpCard.style.display='block';registerSubmit.disabled=false;registerSubmit.innerText='Get Verification Code';}).catch(err=>{registerError.innerText='Failed to send OTP: '+(err.text||JSON.stringify(err));registerError.style.display='block';registerSubmit.disabled=false;registerSubmit.innerText='Get Verification Code';});}catch(err){registerError.innerText='EmailJS connection error.';registerError.style.display='block';registerSubmit.disabled=false;registerSubmit.innerText='Get Verification Code';}
+            });
+            otpForm.addEventListener('submit',async(e)=>{
+                e.preventDefault();otpError.style.display='none';
+                const otpVal=document.getElementById('otp').value.trim();
+                otpSubmit.disabled=true;otpSubmit.innerText='Verifying...';
+                if(otpVal!==generatedOtp){otpError.innerText='Invalid verification code.';otpError.style.display='block';otpSubmit.disabled=false;otpSubmit.innerText='Verify & Create Account';return;}
+                try{const hp=await hashPassword(userPassword),users=getDatabase();users.push({name:userName,email:userEmail,password:hp,registeredAt:new Date().toISOString()});saveDatabase(users);localStorage.setItem('thola_user',JSON.stringify({name:userName,email:userEmail}));window.location.href='dashboard.html';}catch(err){otpError.innerText='Error saving account info.';otpError.style.display='block';}finally{otpSubmit.disabled=false;otpSubmit.innerText='Verify & Create Account';}
+            });
+            resendOtpLink.addEventListener('click', async (e) => {
+                e.preventDefault();
+                otpError.style.display = 'none';
+
+                if (resendOtpLink.classList.contains('disabled')) return;
+
+                resendOtpLink.classList.add('disabled');
+                resendOtpLink.innerText = 'Resending...';
+
+                generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+
+                try {
+                    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                        to_name: userName,
+                        to_email: userEmail,
+                        email: userEmail,
+                        user_email: userEmail,
+                        otp_code: generatedOtp,
+                        otp: generatedOtp,
+                        code: generatedOtp,
+                        message: generatedOtp
+                    }).then(() => {
+                        otpError.innerText = '✅ A new verification code has been sent!';
+                        otpError.style.display = 'block';
+                        otpError.style.color = '#22c55e'; // Success green
+
+                        setTimeout(() => {
+                            otpError.style.display = 'none';
+                            otpError.style.color = '#ff3333'; // Reset to red
+                        }, 5000);
+
+                        resendOtpLink.classList.remove('disabled');
+                        resendOtpLink.innerText = 'Resend Code';
+                    }).catch(err => {
+                        otpError.innerText = 'Failed to send code: ' + (err.text || JSON.stringify(err));
+                        otpError.style.display = 'block';
+                        resendOtpLink.classList.remove('disabled');
+                        resendOtpLink.innerText = 'Resend Code';
+                    });
+                } catch (err) {
+                    otpError.innerText = 'EmailJS connection error.';
+                    otpError.style.display = 'block';
+                    resendOtpLink.classList.remove('disabled');
+                    resendOtpLink.innerText = 'Resend Code';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

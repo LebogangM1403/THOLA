@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THOLA — Search</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+/* Enhanced Search Page */
+.search-page {
+    background: #f8fafc;
+    min-height: 100vh;
+}
+[data-theme="dark"] .search-page { background: #0A0907; }
+
+.search-hero {
+    background: white;
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+[data-theme="dark"] .search-hero { background: #141210; border-color: rgba(255,255,255,0.08); }
+
+.search-bar-container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 18px 24px;
+    font-size: 17px;
+    border: 2px solid #e2e8f0;
+    border-radius: 9999px;
+}
+[data-theme="dark"] .search-input { background: #1C1915; border-color: rgba(255,255,255,0.1); color: #F0EBE2; }
+
+.search-results-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.listings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.listing-card {
+    transition: all 0.25s ease;
+}
+.listing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+</style>
+</head>
+<body class="search-page">
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="dashboard.html" class="logo" style="text-decoration: none; color: inherit;">🔍 THOLA</a>
+        <div class="nav-actions">
+            <a href="profile.html" class="login-link" id="profileNavLink">&#128100; My Profile</a>
+            <a href="search.html" class="login-link">🔍 Search</a>
+            <a href="chat.html" class="login-link">💬 Chat</a>
+            <a href="report.html" class="login-link">🚩 Report</a>
+            <button class="btn-nav" onclick="window.location.href='post-listing.html'">+ Post a Listing</button>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <div class="toggle-knob" id="themeKnob">🌙</div>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Search Hero -->
+<section class="search-hero">
+    <div class="search-bar-container">
+        <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 16px; color: #0d1e3d;">Find What You Need</h1>
+        <div class="search-bar-container">
+            <input type="text" class="search-input" id="mainSearch" placeholder="Search skills, goods, services, or people..." />
+        </div>
+    </div>
+</section>
+
+<main class="search-results-section">
+    <div class="listings-header">
+        <h3 id="searchTitle">Search Results</h3>
+        <span id="resultCount">0 results found</span>
+    </div>
+
+    <div class="listings-grid" id="searchResults"></div>
+
+    <div class="no-results" id="noSearchResults" style="display:none; text-align:center; padding:60px 20px;">
+        <h3 style="font-size:24px; margin-bottom:12px;">No results found</h3>
+        <p style="color:#64748b;">Try different keywords or browse all listings</p>
+        <a href="dashboard.html" class="btn-nav" style="display:inline-block; margin-top:20px;">Browse All Listings</a>
+    </div>
+</main>
+
+<footer>
+    <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have. Trust Who You Deal With.</p>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+// Real search using localStorage listings
+function performSearch() {
+    const query = document.getElementById('mainSearch').value.toLowerCase().trim();
+    const resultsContainer = document.getElementById('searchResults');
+    const noResults = document.getElementById('noSearchResults');
+    const countEl = document.getElementById('resultCount');
+
+    resultsContainer.innerHTML = '';
+
+    if (!query) {
+        countEl.textContent = "0 results found";
+        noResults.style.display = 'block';
+        return;
+    }
+
+    const allListings = JSON.parse(localStorage.getItem('thola_listings') || '[]');
+
+    const filtered = allListings.filter(listing => 
+        listing.title?.toLowerCase().includes(query) ||
+        listing.description?.toLowerCase().includes(query) ||
+        listing.category?.toLowerCase().includes(query) ||
+        listing.location?.toLowerCase().includes(query)
+    );
+
+    countEl.textContent = `${filtered.length} result${filtered.length !== 1 ? 's' : ''} found`;
+
+    if (filtered.length === 0) {
+        noResults.style.display = 'block';
+        return;
+    }
+
+    noResults.style.display = 'none';
+
+    filtered.forEach(listing => {
+        const cardHTML = `
+            <div class="listing-card" data-id="${listing.id}">
+                <a href="listing-detail.html?id=${listing.id}" class="card-view-link"></a>
+                <div class="card-top">
+                    <span class="category-badge">${listing.type === 'skill' ? 'Skill' : 'Goods'}</span>
+                    <div class="card-icon">${listing.type === 'skill' ? '🛠️' : '📦'}</div>
+                </div>
+                <h4 class="card-title">${listing.title}</h4>
+                <p class="card-description">${listing.description?.substring(0, 120)}...</p>
+                <div class="card-price">R${listing.price}</div>
+                <div class="card-seller">
+                    <div class="seller-location">${listing.location || 'South Africa'}</div>
+                </div>
+            </div>
+        `;
+        resultsContainer.innerHTML += cardHTML;
+    });
+}
+
+// Search on Enter key
+document.getElementById('mainSearch').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        performSearch();
+    }
+});
+
+// Optional: Auto-search when typing (debounced)
+let timeout;
+document.getElementById('mainSearch').addEventListener('input', () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(performSearch, 400);
+});
+</script>
+</body>
+</html>

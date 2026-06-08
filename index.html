@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THOLA — Find Local. Support Local.</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+body { font-family: inherit; margin: 0; }
+
+.hero-container {
+    background: linear-gradient(135deg, #0d1e3d, #1a2a4a);
+    color: white;
+    text-align: center;
+    padding: 120px 20px 100px;
+}
+
+[data-theme="dark"] .hero-container {
+    background: linear-gradient(135deg, #0A0907, #1C1915);
+}
+
+.badge {
+    background: rgba(255,102,0,0.2);
+    color: #ffcc99;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.hero-container h1 {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 16px 0 24px;
+    color: #ffffff;
+}
+
+.lead-text, .sub-text {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.lead-text { font-size: 20px; margin-bottom: 16px; opacity: 0.95; }
+.sub-text { font-size: 17px; opacity: 0.85; margin-bottom: 40px; }
+
+.button-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.btn-create {
+    background: #ff6600;
+    color: white;
+    border: none;
+}
+
+.btn-learn-more {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255,255,255,0.6);
+}
+
+.btn-create:hover { background: #e65c00; transform: translateY(-3px); }
+.btn-learn-more:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+/* Services */
+.services { padding: 80px 20px; background: #f8fafc; }
+[data-theme="dark"] .services { background: #0A0907; }
+
+.services-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: #0d1e3d;
+    margin-bottom: 10px;
+}
+[data-theme="dark"] .services-title { color: #F0EBE2; }
+
+.services-sub {
+    text-align: center;
+    font-size: 15px;
+    color: #64748b;
+    margin-bottom: 48px;
+}
+[data-theme="dark"] .services-sub { color: #A09880; }
+
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background: white;
+    padding: 28px 16px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: all 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    border: 1px solid #f1f5f9;
+}
+[data-theme="dark"] .service-card {
+    background: #141210;
+    border-color: rgba(255,255,255,0.07);
+    box-shadow: none;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.1);
+    border-color: #ff6600;
+}
+
+.icon-circle {
+    width: 64px; height: 64px;
+    background: #fff0e6;
+    color: #ff6600;
+    font-size: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    transition: transform 0.2s ease;
+}
+[data-theme="dark"] .icon-circle {
+    background: rgba(212,169,106,0.12);
+    color: #D4A96A;
+}
+
+.service-card:hover .icon-circle { transform: scale(1.1); }
+
+.service-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #334155;
+    margin: 0;
+}
+[data-theme="dark"] .service-card h3 { color: #A09880; }
+
+/* How it works */
+.how-it-works {
+    padding: 80px 20px;
+    background: #ffffff;
+    text-align: center;
+}
+[data-theme="dark"] .how-it-works { background: #141210; }
+
+.how-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0d1e3d;
+    margin-bottom: 10px;
+}
+[data-theme="dark"] .how-title { color: #F0EBE2; }
+
+.how-sub {
+    font-size: 15px;
+    color: #64748b;
+    margin-bottom: 48px;
+}
+[data-theme="dark"] .how-sub { color: #A09880; }
+
+.steps-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 32px;
+}
+
+.step-item { text-align: center; }
+
+.step-number {
+    width: 52px; height: 52px;
+    background: #ff6600;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0 auto 16px;
+}
+
+.step-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0d1e3d;
+    margin-bottom: 8px;
+}
+[data-theme="dark"] .step-title { color: #F0EBE2; }
+
+.step-desc {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+}
+[data-theme="dark"] .step-desc { color: #A09880; }
+
+/* Stats */
+.stats {
+    padding: 80px 20px;
+    background: #0d1e3d;
+}
+[data-theme="dark"] .stats { background: #080705; }
+
+.stats-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+    text-align: center;
+}
+
+.stat-item { text-align: center; }
+
+.stat-number {
+    font-size: 42px;
+    font-weight: 800;
+    color: #ff6600;
+}
+[data-theme="dark"] .stat-number { color: #D4A96A; }
+
+.stat-label {
+    color: rgba(255,255,255,0.55);
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+/* CTA Banner */
+.cta-banner {
+    background: linear-gradient(135deg, #ff6600, #e65c00);
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.cta-banner h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 12px;
+}
+
+.cta-banner p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 32px;
+}
+
+.btn-cta {
+    background: white;
+    color: #ff6600;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.btn-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.2); }
+
+/* Footer */
+footer {
+    background: #080705;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 14px;
+}
+footer a {
+    color: #ff6600;
+    text-decoration: none;
+    margin: 0 12px;
+}
+footer a:hover { color: white; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-container h1 { font-size: 32px; }
+    .lead-text { font-size: 16px; }
+    .sub-text { font-size: 15px; }
+    .button-group { flex-direction: column; align-items: center; }
+    .btn { width: 100%; max-width: 280px; }
+    .stat-number { font-size: 32px; }
+    .stats-container { gap: 40px; }
+    .how-title, .services-title { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="html/dashboard.html" class="logo" style="text-decoration: none; color: inherit;">🔍 THOLA</a>
+        <div class="nav-actions">
+            <a href="html/login.html" class="login-link">➔ Login</a>
+            <a href="html/register.html">
+                <button class="btn-nav">👤 Create Account Free</button>
+            </a>
+            <!-- Theme toggle -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <div class="toggle-knob" id="themeKnob">🌙</div>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<div class="hero-container">
+    <span class="badge">🇿🇦 South Africa's Local Services Marketplace</span>
+    <h1>Find Local.<br>Support Local.</h1>
+    <p class="lead-text">
+        Built to empower local businesses in our communities by bringing trusted services closer to the people who need them.
+    </p>
+    <p class="sub-text">
+        THOLA connects South African youth through skills and goods exchange. No CV. No qualifications. Just what you can do.
+    </p>
+    <div class="button-group">
+        <a href="html/register.html">
+            <button class="btn btn-create">🚀 Get Started Free</button>
+        </a>
+        <a href="html/login.html">
+            <button class="btn btn-learn-more">Browse Listings</button>
+        </a>
+    </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services">
+    <p class="services-title">What Can You Find on THOLA?</p>
+    <p class="services-sub">Browse hundreds of local skills and goods in your area</p>
+    <div class="services-container">
+        <a href="html/login.html" class="service-card">
+            <div class="icon-circle">🏠</div>
+            <h3>House Cleaning</h3>
+        </a>
+        <a href="html/login.html" class="service-card">
+            <div class="icon-circle">🍲</div>
+            <h3>Food & Catering</h3>
+        </a>
+        <a href="html/login.html" class="service-card">
+            <div class="icon-circle">📚</div>
+            <h3>Tutoring</h3>
+        </a>
+        <a href="html/login.html" class="service-card">
+            <div class="icon-circle">🧵</div>
+            <h3>Seamstress</h3>
+        </a>
+        <a href="html/login.html" class="service-card">
+            <div class="icon-circle">👞</div>
+            <h3>Shoemaker</h3>
+        </a>
+        <a href="html/login.html" class="service-card">
+            <div class="icon-circle">🔨</div>
+            <h3>Carpentry</h3>
+        </a>
+        <a href="html/login.html" class="service-card">
+            <div class="icon-circle">🔧</div>
+            <h3>Mechanical</h3>
+        </a>
+        <a href="html/login.html" class="service-card">
+            <div class="icon-circle">👶</div>
+            <h3>Babysitting</h3>
+        </a>
+        <a href="html/login.html" class="service-card">
+            <div class="icon-circle">🛍️</div>
+            <h3>Personal Shopper</h3>
+        </a>
+        <a href="html/login.html" class="service-card">
+            <div class="icon-circle">🚕</div>
+            <h3>Transport</h3>
+        </a>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+    <p class="how-title">How THOLA Works</p>
+    <p class="how-sub">Simple, safe, and built for every South African</p>
+    <div class="steps-grid">
+        <div class="step-item">
+            <div class="step-number">1</div>
+            <div class="step-title">Sign Up & Get Verified</div>
+            <p class="step-desc">Create your account using your SA ID and phone number. Get your THOLA Verified Badge.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-title">Post Your Skill or Goods</div>
+            <p class="step-desc">Tell the community what you can do or what you are selling. No CV required.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-title">Connect & Negotiate</div>
+            <p class="step-desc">Find what you need, make an offer, and agree on a fair price safely inside the app.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-number">4</div>
+            <div class="step-title">Build Your Reputation</div>
+            <p class="step-desc">Every deal earns you a star rating. Your reputation is your currency.</p>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="stats-container">
+        <div class="stat-item">
+            <div class="stat-number">10,000+</div>
+            <div class="stat-label">Verified Service Providers</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">50,000+</div>
+            <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">9</div>
+            <div class="stat-label">Provinces Covered</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Free to Join</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+    <h2>Ready to Join THOLA?</h2>
+    <p>Join thousands of South Africans already exchanging skills and goods in their communities.</p>
+    <a href="html/register.html">
+        <button class="btn-cta">Create Your Free Account →</button>
+    </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have. Trust Who You Deal With.</p>
+    <p style="margin-top: 12px;">
+        <a href="html/login.html">Login</a>
+        <a href="html/register.html">Register</a>
+        <a href="html/dashboard.html">Browse</a>
+        <a href="html/report.html">Report</a>
+    </p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
