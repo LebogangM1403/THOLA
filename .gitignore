@@ -1,7 +1,6 @@
 # Local database and credentials
 config.json
 database.json
-js/credentials.js
 
 # Node/IDE files
 node_modules/
