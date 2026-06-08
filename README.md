@@ -28,8 +28,6 @@ The project demonstrates:
 * HTML5
 * CSS3
 * JavaScript (Vanilla JS)
-* EmailJS (for OTP verification and password reset emails)
-* Web Crypto API (SHA-256 password hashing)
 
 ---
 
@@ -41,36 +39,18 @@ Website: https://tholagala.netlify.app
 
 ## Pages Developed
 
-| Page            | Description                                                                       |
-| --------------- | --------------------------------------------------------------------------------- |
-| Landing Page    | Introduction to the platform                                                      |
-| Register Page   | User registration with 6-digit OTP email verification                            |
-| Login Page      | User authentication interface                                                     |
-| Forgot Password | 3-step password recovery: email lookup, OTP verification, new password            |
-| Dashboard       | Main browsing experience                                                          |
-| Post Listing    | Create a skill, product, job, or request listing                                  |
-| Listing Detail  | View listing information                                                          |
-| Chat Page       | Messaging and negotiation interface                                               |
-| Search Page     | Search and filtering functionality                                                |
-| Profile Page    | User profile management                                                           |
-| Report Page     | Report listings or users                                                          |
-
----
-
-## Configuration
-
-This project uses EmailJS to send OTP codes for registration and password resets. You need to configure your own EmailJS keys.
-
-Create a file `js/credentials.js` with the following content:
-
-```javascript
-const EMAILJS_PUBLIC_KEY = "your_public_key";
-const EMAILJS_SERVICE_ID = "your_service_id";
-const EMAILJS_TEMPLATE_ID = "your_registration_template_id";
-const EMAILJS_RESET_TEMPLATE_ID = "your_password_reset_template_id";
-```
-
-> Note: `js/credentials.js` should be kept out of version control if your repository is public.
+| Page           | Description                                      |
+| -------------- | ------------------------------------------------ |
+| Landing Page   | Introduction to the platform                     |
+| Register Page  | User registration and verification               |
+| Login Page     | User authentication interface                    |
+| Dashboard      | Main browsing experience                         |
+| Post Listing   | Create a skill, product, job, or request listing |
+| Listing Detail | View listing information                         |
+| Chat Page      | Messaging and negotiation interface              |
+| Search Page    | Search and filtering functionality               |
+| Profile Page   | User profile management                          |
+| Report Page    | Report listings or users                         |
 
 ---
 
@@ -80,7 +60,7 @@ const EMAILJS_RESET_TEMPLATE_ID = "your_password_reset_template_id";
 | ----------- | ----------------------------------------- |
 | Lebogang    | Dashboard                                 |
 | Thapelo     | Landing Page, Report Page, Global Styling |
-| Lutendo     | Register, Login, and Forgot Password Pages |
+| Lutendo     | Register and Login Pages                  |
 | Tsholofelo  | Chat and Search Pages                     |
 | Arabi       | Post Listing and Listing Detail Pages     |
 
@@ -109,9 +89,7 @@ git clone <repository-link>
 
 2. Open the project folder.
 
-3. Add your EmailJS credentials to `js/credentials.js` (see Configuration above).
-
-4. Launch `index.html` in your browser or use Live Server.
+3. Launch `index.html` in your browser or use Live Server.
 
 No installation or backend setup is required.
 
