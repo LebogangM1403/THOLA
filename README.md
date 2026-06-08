@@ -41,19 +41,19 @@ Website: https://tholagala.netlify.app
 
 ## Pages Developed
 
-| Page           | Description                                      |
-| -------------- | ------------------------------------------------ |
-| Landing Page   | Introduction to the platform                     |
-| Register Page  | User registration with 6-digit OTP email verification |
-| Login Page     | User authentication interface                    |
-| Forgot Password | 3-step password recovery: email lookup, OTP verification, new password |
-| Dashboard      | Main browsing experience                         |
-| Post Listing   | Create a skill, product, job, or request listing |
-| Listing Detail | View listing information                         |
-| Chat Page      | Messaging and negotiation interface              |
-| Search Page    | Search and filtering functionality               |
-| Profile Page   | User profile management                          |
-| Report Page    | Report listings or users                         |
+| Page            | Description                                                                       |
+| --------------- | --------------------------------------------------------------------------------- |
+| Landing Page    | Introduction to the platform                                                      |
+| Register Page   | User registration with 6-digit OTP email verification                            |
+| Login Page      | User authentication interface                                                     |
+| Forgot Password | 3-step password recovery: email lookup, OTP verification, new password            |
+| Dashboard       | Main browsing experience                                                          |
+| Post Listing    | Create a skill, product, job, or request listing                                  |
+| Listing Detail  | View listing information                                                          |
+| Chat Page       | Messaging and negotiation interface                                               |
+| Search Page     | Search and filtering functionality                                                |
+| Profile Page    | User profile management                                                           |
+| Report Page     | Report listings or users                                                          |
 
 ---
 
