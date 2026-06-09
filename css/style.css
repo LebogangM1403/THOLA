@@ -11,14 +11,14 @@
 }
 
 body.dark-mode {
-  --bg-page: #0f172a;         /* Dark slate background */
-  --text-main: #e2e8f0;       /* Crisp light text */
-  --text-heading: #f8fafc;    /* Bright white headings */
-  --text-lead: #cbd5e1;       /* Light gray lead text */
-  --text-sub: #94a3b8;        /* Slate sub text */
-  --bg-badge: #2e1f15;        /* Dark orange tint badge */
-  --text-badge: #ff8533;      /* Vibrant orange badge text */
-  --text-service-h3: #e2e8f0; /* Crisp light text for services */
+  --bg-page: #0f172a;
+  --text-main: #e2e8f0;
+  --text-heading: #f8fafc;
+  --text-lead: #cbd5e1;
+  --text-sub: #94a3b8;
+  --bg-badge: #2e1f15;
+  --text-badge: #ff8533;
+  --text-service-h3: #e2e8f0;
 }
 
 * {
@@ -29,13 +29,13 @@ body.dark-mode {
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-page); /* FIXED: Changed to variable */
-  color: var(--text-main);           /* FIXED: Changed to variable */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Adds smooth transition fade */
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar {
-  background-color: #0d1e3d; /* Dark navy color stays constant */
+  background-color: #0d1e3d;
   color: #ffffff;
   padding: 16px 0;
 }
@@ -123,12 +123,12 @@ body.dark-mode .btn-toggle {
 .btn-toggle::before {
   content: "";
   position: absolute;
-  top: 46px;                 /* Sits right on top of the speech bubble */
+  top: 46px;
   left: 50%;
   transform: translateX(-50%);
   border-width: 0 6px 6px 6px;
   border-style: solid;
-  border-color: transparent transparent #1e293b transparent; /* Creates a clean upward triangle */
+  border-color: transparent transparent #1e293b transparent;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
@@ -382,18 +382,15 @@ h1 {
   }
 }
 
-/* ==========================================
-   MAIN LANDING PAGE FOOTER
-   ========================================== */
 .main-footer {
-  background-color: #0d1e3d; /* Matches your constant navbar color */
+  background-color: #0d1e3d;
   color: #ffffff;
   padding: 40px 0;
   width: 100%;
 }
 
 .footer-container {
-  max-width: 1100px; /* Aligns content perfectly with your header/hero grid */
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
@@ -403,7 +400,7 @@ h1 {
 
 .footer-copy {
   font-size: 14px;
-  color: #94a3b8; /* Uses your crisp slate text configuration */
+  color: #94a3b8;
   font-weight: 500;
 }
 
@@ -421,14 +418,12 @@ h1 {
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
-/* Hover effects utilizing Thola Core Orange Accent */
 .footer-nav a:hover {
   color: #ff6600;
 }
 
-/* Dark Mode specific background override if you prefer the footer adapting to canvas */
 body.dark-mode .main-footer {
-  background-color: #090f1d; /* Slightly darker shade of navy for deep contrast in dark mode */
+  background-color: #090f1d;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
