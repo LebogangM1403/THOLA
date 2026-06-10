@@ -5,149 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THOLA — Post a Listing</title>
 <link rel="stylesheet" href="../css/style.css">
-<style>
-/* Professional Post Listing Styles */
-body {
-    background: #f8fafc;
-    font-family: inherit;
-}
-[data-theme="dark"] body { background: #0A0907; }
 
-.post-container {
-    max-width: 720px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.post-card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    padding: 40px;
-    border: 1px solid #e2e8f0;
-}
-[data-theme="dark"] .post-card {
-    background: #141210;
-    border-color: rgba(255,255,255,0.08);
-}
-
-.post-header {
-    text-align: center;
-    margin-bottom: 32px;
-}
-.post-header h1 {
-    font-size: 32px;
-    font-weight: 800;
-    color: #0d1e3d;
-    margin: 0;
-}
-[data-theme="dark"] .post-header h1 { color: #F0EBE2; }
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-}
-@media (max-width: 640px) {
-    .form-grid { grid-template-columns: 1fr; }
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #334155;
-    font-size: 14px;
-}
-[data-theme="dark"] .form-group label { color: #A09880; }
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 14px 16px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 10px;
-    font-size: 16px;
-    transition: all 0.2s;
-    font-family: inherit;
-}
-[data-theme="dark"] .form-group input,
-[data-theme="dark"] .form-group textarea,
-[data-theme="dark"] .form-group select {
-    background: #1C1915;
-    border-color: rgba(255,255,255,0.1);
-    color: #F0EBE2;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: #ff6600;
-    box-shadow: 0 0 0 3px rgba(255,102,0,0.1);
-    outline: none;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.image-upload-area {
-    border: 2px dashed #e2e8f0;
-    border-radius: 12px;
-    padding: 32px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-[data-theme="dark"] .image-upload-area { border-color: rgba(255,255,255,0.15); }
-.image-upload-area:hover { border-color: #ff6600; background: rgba(255,102,0,0.03); }
-
-#imagePreview {
-    max-width: 100%;
-    max-height: 240px;
-    margin-top: 12px;
-    border-radius: 10px;
-    display: none;
-}
-
-.btn-post {
-    width: 100%;
-    background: #ff6600;
-    color: white;
-    border: none;
-    padding: 16px;
-    font-size: 17px;
-    font-weight: 700;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 12px;
-    transition: all 0.2s;
-}
-.btn-post:hover {
-    background: #e65c00;
-    transform: translateY(-2px);
-}
-</style>
 </head>
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar">
-<div class="nav-container">
-    <!-- <a href="dashboard.html" class="logo"><span class="logo-dot"></span> THOLA</a> -->
-    <div class="nav-actions">
-        <a href="dashboard.html" class="nav-link">Browse</a>
-        <a href="profile.html" class="nav-link">My Profile</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            <div class="toggle-knob" id="themeKnob">🌙</div>
+    <div class="nav-container">
+        <a href="dashboard.html" class="logo" style="text-decoration: none; color: inherit;">🔍 THOLA</a>
+        
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
         </button>
+        <div class="nav-actions">
+            <a href="profile.html" class="login-link" id="profileNavLink">&#128100; My Profile</a>
+                <button id="theme-toggle" class="btn-toggle" aria-label="Toggle dark mode" data-tooltip="Dark Mode">
+                    <span class="icon-sun">☀️</span>
+                    <span class="icon-moon">🌙</span>
+                </button>
+        </div>
     </div>
-</div>
 </nav>
+
+<!-- Back Button -->
+<div class="back-bar">
+    <a href="dashboard.html" class="back-link">← Back</a>
+</div>
 
 <div class="post-container">
     <div class="post-card">
@@ -212,63 +95,11 @@ textarea {
 <div class="toast" id="toast" style="display:none;">Listing posted successfully!</div>
 
 <script src="../js/main.js"></script>
-<script>
-// Image Preview
-const uploadArea = document.getElementById('uploadArea');
-const imageUpload = document.getElementById('imageUpload');
-const imagePreview = document.getElementById('imagePreview');
+<script src="../js/post-listing.js"></script>
 
-uploadArea.addEventListener('click', () => imageUpload.click());
 
-imageUpload.addEventListener('change', function(e) {
-    if (e.target.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(ev) {
-            imagePreview.src = ev.target.result;
-            imagePreview.style.display = 'block';
-        };
-        reader.readAsDataURL(e.target.files[0]);
-    }
-});
-
-// Form Submit - Save to localStorage
-document.getElementById('postForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const listing = {
-        id: Date.now(),
-        type: document.getElementById('listingType').value,
-        title: document.getElementById('title').value,
-        description: document.getElementById('description').value,
-        price: document.getElementById('price').value,
-        location: document.getElementById('location').value,
-        category: document.getElementById('category').value,
-        image: imagePreview.src || null,
-        date: new Date().toISOString(),
-        views: 0,
-        deals: 0
-    };
-
-    // Save to localStorage
-    let listings = JSON.parse(localStorage.getItem('thola_listings') || '[]');
-    listings.unshift(listing); // Add to beginning
-    localStorage.setItem('thola_listings', JSON.stringify(listings));
-
-    // Show success message
-    const toast = document.getElementById('toast');
-    toast.textContent = "✅ Listing posted successfully!";
-    toast.style.display = 'block';
-    toast.style.background = '#22c55e';
-
-    // Reset form
-    this.reset();
-    imagePreview.style.display = 'none';
-
-    // Redirect to dashboard after 1.5 seconds
-    setTimeout(() => {
-        window.location.href = 'dashboard.html';
-    }, 1500);
-});
-</script>
+<footer>
+    <p>THOLA &copy; 2026 &mdash; Find What You Need. Offer What You Have. Trust Who You Deal With.</p>
+</footer>
 </body>
 </html>

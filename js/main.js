@@ -35,8 +35,8 @@ function loadDummyData() {
 function initTheme() {
     const saved = localStorage.getItem('thola_theme') || 'light';
     document.documentElement.setAttribute('data-theme', saved);
-    const knob = document.getElementById('themeKnob');
-    if (knob) knob.textContent = saved === 'dark' ? '☀️' : '🌙';
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.setAttribute('data-tooltip', saved === 'dark' ? 'Light Mode' : 'Dark Mode');
 }
 
 function toggleTheme() {
@@ -44,8 +44,8 @@ function toggleTheme() {
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('thola_theme', next);
-    const knob = document.getElementById('themeKnob');
-    if (knob) knob.textContent = next === 'dark' ? '☀️' : '🌙';
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.setAttribute('data-tooltip', next === 'dark' ? 'Light Mode' : 'Dark Mode');
 }
 
 /* ── 3. DASHBOARD FILTER — original code, unchanged ── */
@@ -164,19 +164,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Init theme */
     initTheme();
-    const themeBtn = document.getElementById('themeToggle');
+    const themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
 
-    /* Session check — original logic */
-    const currentUser = JSON.parse(localStorage.getItem('thola_user') || 'null');
-    const isDashboard = document.body.classList.contains('dashboard-page');
-    const isProfile   = document.body.classList.contains('profile-page');
-    const isChat      = document.body.dataset.page === 'chat';
+    /* Hamburger Menu Logic */
+    const hamburger = document.querySelector('.hamburger');
+    const navActions = document.querySelector('.nav-actions');
+    if (hamburger && navActions) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navActions.classList.toggle('open');
+        });
+    }
 
-    if ((isDashboard || isProfile || isChat) && !currentUser) {
+    /* Session check — Enhanced for all protected pages */
+    const currentUser = JSON.parse(localStorage.getItem('thola_user') || 'null');
+    const currentPagePath = window.location.pathname.split('/').pop() || 'index.html';
+    const publicPages = ['index.html', 'login.html', 'create_user.html', 'register.html', 'forgot-password.html', 'learn-more.html'];
+    
+    if (!publicPages.includes(currentPagePath) && !currentUser && currentPagePath !== '') {
         alert('Please log in to access this page.');
         window.location.href = 'login.html';
         return;
+    }
+
+    /* Active Nav Link Logic */
+    document.querySelectorAll('.nav-actions a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && currentPagePath === href) {
+            link.classList.add('nav-active');
+        }
+    });
+
+    /* Global User Name Navigation Customisation */
+    if (currentUser) {
+        const profileNavLink = document.getElementById('profileNavLink');
+        if (profileNavLink) {
+            profileNavLink.innerHTML = `&#128100; ${currentUser.name}`;
+        }
     }
 
     /* Dashboard customisations — original logic */
@@ -184,10 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const welcomeTitle = document.querySelector('.welcome-text h2');
         if (welcomeTitle) {
             welcomeTitle.innerHTML = `Welcome back, ${currentUser.name} &#128075;`;
-        }
-        const profileLink = document.querySelector('.login-link');
-        if (profileLink) {
-            profileLink.innerHTML = `&#128100; ${currentUser.name}`;
         }
     }
 
@@ -214,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
             logoutBtn.addEventListener('click', () => {
                 localStorage.removeItem('thola_user');
                 alert('You have logged out successfully.');
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             });
         }
     }

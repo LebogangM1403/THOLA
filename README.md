@@ -43,17 +43,19 @@ Website: https://tholagala.netlify.app
 
 | Page            | Description                                                                       |
 | --------------- | --------------------------------------------------------------------------------- |
-| Landing Page    | Introduction to the platform                                                      |
-| Register Page   | User registration with 6-digit OTP email verification                            |
-| Login Page      | User authentication interface                                                     |
-| Forgot Password | 3-step password recovery: email lookup, OTP verification, new password            |
-| Dashboard       | Main browsing experience                                                          |
-| Post Listing    | Create a skill, product, job, or request listing                                  |
-| Listing Detail  | View listing information                                                          |
-| Chat Page       | Messaging and negotiation interface                                               |
-| Search Page     | Search and filtering functionality                                                |
-| Profile Page    | User profile management                                                           |
-| Report Page     | Report listings or users                                                          |
+| Landing Page    | Introduction to the platform (`index.html`)                                       |
+| Learn More      | Public overview of THOLA features and how it works (`learn-more.html`)            |
+| Register Page   | User registration with 6-digit OTP email verification (`register.html`)          |
+| Create Account  | Alternative account creation flow (`create_user.html`)                           |
+| Login Page      | User authentication interface (`login.html`)                                      |
+| Forgot Password | 3-step password recovery: email lookup, OTP verification, new password (`forgot-password.html`) |
+| Dashboard       | Main browsing experience with search and filters (`dashboard.html`)              |
+| Post Listing    | Create a skill, product, job, or request listing (`post-listing.html`)           |
+| Listing Detail  | View full listing information and contact seller (`listing-detail.html`)         |
+| Chat Page       | Messaging and negotiation interface (`chat.html`)                                |
+| Search Page     | Search and filtering functionality (`search.html`)                               |
+| Profile Page    | User profile management and listing history (`profile.html`)                     |
+| Report Page     | Report listings or users for moderation (`report.html`)                          |
 
 ---
 
@@ -89,11 +91,40 @@ const EMAILJS_RESET_TEMPLATE_ID = "your_password_reset_template_id";
 ## Project Structure
 
 ```text
-thola-website/
+THOLA/
 ├── html/
+│   ├── index.html              # Landing page
+│   ├── learn-more.html         # Public platform overview (no login required)
+│   ├── register.html           # OTP-based user registration
+│   ├── create_user.html        # Alternative account creation
+│   ├── login.html              # User login
+│   ├── forgot-password.html    # 3-step password recovery
+│   ├── dashboard.html          # Main listings dashboard
+│   ├── post-listing.html       # Create a new listing
+│   ├── listing-detail.html     # View a single listing
+│   ├── chat.html               # Messaging & offer negotiation
+│   ├── search.html             # Search & filter listings
+│   ├── profile.html            # User profile management
+│   └── report.html             # Report a listing or user
+│
 ├── css/
+│   └── style.css               # Single unified stylesheet (all pages)
+│
 ├── js/
-├── images/
+│   ├── main.js                 # Global logic: auth guard, theme, navbar
+│   ├── credentials.js          # EmailJS keys (excluded from version control)
+│   ├── chat.js                 # Chat page logic
+│   ├── create_user.js          # Account creation logic
+│   ├── dashboard.js            # Dashboard filter & listing logic
+│   ├── forgot-password.js      # Password reset flow logic
+│   ├── listing-detail.js       # Listing detail page logic
+│   ├── login.js                # Login authentication logic
+│   ├── post-listing.js         # Post listing form logic
+│   ├── profile.js              # Profile management logic
+│   ├── register.js             # Registration & OTP logic
+│   ├── report.js               # Report submission logic
+│   └── search.js               # Search & filter logic
+│
 └── README.md
 ```
 
