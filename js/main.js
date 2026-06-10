@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* Session check — Enhanced for all protected pages */
     const currentUser = JSON.parse(localStorage.getItem('thola_user') || 'null');
     const currentPagePath = window.location.pathname.split('/').pop() || 'index.html';
-    const publicPages = ['index.html', 'login.html', 'create_user.html', 'register.html', 'forgot-password.html'];
+    const publicPages = ['index.html', 'login.html', 'create_user.html', 'register.html', 'forgot-password.html', 'learn-more.html'];
     
     if (!publicPages.includes(currentPagePath) && !currentUser && currentPagePath !== '') {
         alert('Please log in to access this page.');
