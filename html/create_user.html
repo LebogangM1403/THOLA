@@ -5,107 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THOLA — Create Account</title>
 <link rel="stylesheet" href="../css/style.css">
-<style>
-.auth-page {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f8fafc, #e0f2fe);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-[data-theme="dark"] .auth-page { background: linear-gradient(135deg, #0A0907, #1C1915); }
 
-.auth-card {
-    background: white;
-    max-width: 440px;
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    padding: 40px 32px;
-    border: 1px solid #e2e8f0;
-}
-[data-theme="dark"] .auth-card {
-    background: #141210;
-    border-color: rgba(255,255,255,0.08);
-}
-
-.auth-title {
-    text-align: center;
-    font-size: 28px;
-    font-weight: 800;
-    color: #0d1e3d;
-    margin-bottom: 8px;
-}
-[data-theme="dark"] .auth-title { color: #F0EBE2; }
-
-.auth-subtitle {
-    text-align: center;
-    color: #64748b;
-    margin-bottom: 32px;
-}
-[data-theme="dark"] .auth-subtitle { color: #A09880; }
-
-.auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.auth-input {
-    padding: 14px 16px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 10px;
-    font-size: 16px;
-    transition: all 0.2s;
-}
-[data-theme="dark"] .auth-input {
-    background: #1C1915;
-    border-color: rgba(255,255,255,0.1);
-    color: #F0EBE2;
-}
-
-.auth-input:focus {
-    border-color: #ff6600;
-    box-shadow: 0 0 0 3px rgba(255,102,0,0.1);
-    outline: none;
-}
-
-.auth-button {
-    background: #ff6600;
-    color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: all 0.2s;
-}
-.auth-button:hover {
-    background: #e65c00;
-    transform: translateY(-1px);
-}
-
-.error-msg {
-    color: #ef4444;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.auth-switch {
-    text-align: center;
-    margin-top: 24px;
-    color: #64748b;
-}
-.auth-link {
-    color: #ff6600;
-    font-weight: 600;
-    text-decoration: none;
-}
-.auth-link:hover { text-decoration: underline; }
-</style>
 </head>
 <body>
 
@@ -113,10 +13,15 @@
 <nav class="navbar">
 <div class="nav-container">
     <a href="index.html" class="logo"><span class="logo-dot"></span> THOLA</a>
-    <div class="nav-actions">
+    
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-actions">
         <a href="login.html" class="nav-link">Log In</a>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            <div class="toggle-knob" id="themeKnob">🌙</div>
+        <button id="theme-toggle" class="btn-toggle" aria-label="Toggle dark mode" data-tooltip="Dark Mode">
+            <span class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
         </button>
     </div>
 </div>

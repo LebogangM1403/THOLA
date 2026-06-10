@@ -5,102 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THOLA — Report</title>
 <link rel="stylesheet" href="../css/style.css">
-<style>
-/* Enhanced Report Page Styles */
-.report-container {
-    max-width: 620px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
 
-.report-card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    padding: 40px;
-    border: 1px solid #e2e8f0;
-}
-[data-theme="dark"] .report-card {
-    background: #141210;
-    border-color: rgba(255,255,255,0.08);
-}
-
-.report-header {
-    text-align: center;
-    margin-bottom: 32px;
-}
-.report-header h2 {
-    font-size: 28px;
-    font-weight: 800;
-    color: #0d1e3d;
-    margin-bottom: 8px;
-}
-[data-theme="dark"] .report-header h2 { color: #F0EBE2; }
-
-.report-subtitle {
-    color: #64748b;
-    font-size: 15px;
-}
-[data-theme="dark"] .report-subtitle { color: #A09880; }
-
-.form-group {
-    margin-bottom: 24px;
-}
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #334155;
-    font-size: 14px;
-}
-[data-theme="dark"] .form-group label { color: #A09880; }
-
-.report-input, .report-select, .report-textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 10px;
-    font-size: 16px;
-    font-family: inherit;
-}
-[data-theme="dark"] .report-input,
-[data-theme="dark"] .report-select,
-[data-theme="dark"] .report-textarea {
-    background: #1C1915;
-    border-color: rgba(255,255,255,0.1);
-    color: #F0EBE2;
-}
-
-.report-input:focus,
-.report-select:focus,
-.report-textarea:focus {
-    border-color: #ff6600;
-    box-shadow: 0 0 0 3px rgba(255,102,0,0.1);
-    outline: none;
-}
-
-.report-textarea {
-    resize: vertical;
-    min-height: 140px;
-}
-
-.report-btn {
-    width: 100%;
-    background: #ff6600;
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 10px;
-    font-size: 17px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.report-btn:hover {
-    background: #e65c00;
-    transform: translateY(-2px);
-}
-</style>
 </head>
 <body class="dashboard-page">
 
@@ -108,14 +13,24 @@
 <nav class="navbar">
     <div class="nav-container">
         <a href="dashboard.html" class="logo" style="text-decoration: none; color: inherit;">🔍 THOLA</a>
+        
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
         <div class="nav-actions">
             <a href="profile.html" class="login-link" id="profileNavLink">&#128100; My Profile</a>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                <div class="toggle-knob" id="themeKnob">🌙</div>
+            <button id="theme-toggle" class="btn-toggle" aria-label="Toggle dark mode" data-tooltip="Dark Mode">
+                <span class="icon-sun">☀️</span>
+                <span class="icon-moon">🌙</span>
             </button>
         </div>
     </div>
 </nav>
+
+<!-- Back Button -->
+<div class="back-bar">
+    <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+</div>
 
 <div class="report-container">
     <div class="report-card">

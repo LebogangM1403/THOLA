@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
@@ -15,11 +15,19 @@
       <div class="logo">
         <span class="logo-icon">&#128270;</span> THOLA
       </div>
+
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
       <div class="nav-actions">
         <a href="login.html" class="login-link">➔ Login</a>
         <a href="create_user.html">
           <button class="btn-nav">&#128100;+ Create Account Free</button>
         </a>
+        <button id="theme-toggle" class="btn-toggle" aria-label="Toggle dark mode" data-tooltip="Dark Mode">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -122,7 +130,9 @@
 
     </div>
   </section>
-  <footer></footer>
+  <footer>
+    <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have.</p>
+  </footer>
   <script src="../js/main.js"></script>
 
 </body>

@@ -1,156 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THOLA — Dashboard</title>
+    <meta name="description" content="Browse skills, goods and services near you on THOLA — South Africa's community marketplace.">
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        /* ── Enhanced dashboard additions only ── */
-        .nav-container { padding-right: 20px; }
-
-        /* Quick action strip */
-        .quick-actions {
-            background: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 10px 0;
-        }
-        [data-theme="dark"] .quick-actions { background: #141210; border-bottom-color: rgba(255,255,255,0.06); }
-        .quick-actions-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .quick-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            border: 1.5px solid #e2e8f0;
-            background: transparent;
-            color: #64748b;
-            font-family: inherit;
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-        .quick-chip:hover { border-color: #ff6600; color: #ff6600; background: rgba(255,102,0,0.04); }
-        .quick-chip.primary { background: #ff6600; color: white; border-color: #ff6600; }
-        .quick-chip.primary:hover { background: #e65c00; }
-        [data-theme="dark"] .quick-chip { border-color: rgba(255,255,255,0.1); color: #A09880; }
-        [data-theme="dark"] .quick-chip:hover { border-color: #D4A96A; color: #D4A96A; }
-        [data-theme="dark"] .quick-chip.primary { background: #D4A96A; color: #0A0907; border-color: #D4A96A; }
-
-        /* Post type selector modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .modal-overlay.open { display: flex; }
-        .modal-box {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 36px;
-            max-width: 480px;
-            width: 100%;
-            text-align: center;
-            animation: modalIn 0.25s ease;
-        }
-        [data-theme="dark"] .modal-box { background: #141210; color: #F0EBE2; }
-        @keyframes modalIn { from { opacity:0; transform:translateY(20px) scale(0.97); } to { opacity:1; transform:none; } }
-        .modal-title { font-size: 22px; font-weight: 800; color: #0d1e3d; margin-bottom: 6px; }
-        [data-theme="dark"] .modal-title { color: #F0EBE2; }
-        .modal-sub { font-size: 14px; color: #64748b; margin-bottom: 28px; }
-        [data-theme="dark"] .modal-sub { color: #A09880; }
-        .modal-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
-        .modal-option {
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 24px 16px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: block;
-        }
-        .modal-option:hover { border-color: #ff6600; background: rgba(255,102,0,0.04); }
-        [data-theme="dark"] .modal-option { border-color: rgba(255,255,255,0.08); }
-        [data-theme="dark"] .modal-option:hover { border-color: #D4A96A; background: rgba(212,169,106,0.06); }
-        .modal-option-icon { font-size: 32px; margin-bottom: 10px; }
-        .modal-option-title { font-size: 15px; font-weight: 800; color: #0d1e3d; margin-bottom: 4px; }
-        [data-theme="dark"] .modal-option-title { color: #F0EBE2; }
-        .modal-option-desc { font-size: 12px; color: #64748b; line-height: 1.4; }
-        [data-theme="dark"] .modal-option-desc { color: #A09880; }
-        .modal-close { font-size: 13px; color: #94a3b8; cursor: pointer; background: none; border: none; font-family: inherit; }
-        .modal-close:hover { color: #64748b; }
-
-        /* Profile setup banner */
-        .profile-setup-banner {
-            background: linear-gradient(135deg, #0d1e3d, #1a2536);
-            margin: 20px auto;
-            max-width: 1100px;
-            border-radius: 12px;
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .profile-setup-banner.hidden { display: none; }
-        .setup-text h4 { font-size: 16px; font-weight: 800; color: #ffffff; margin-bottom: 4px; }
-        .setup-text p  { font-size: 13px; color: rgba(255,255,255,0.55); }
-        .setup-steps { display: flex; gap: 10px; flex-wrap: wrap; }
-        .setup-step {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: rgba(255,255,255,0.5);
-        }
-        .setup-step.done { color: #22c55e; }
-        .setup-step-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; }
-        .setup-step.done .setup-step-dot { background: #22c55e; border-color: #22c55e; color: white; }
-        .btn-setup { background: #ff6600; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; font-family: inherit; }
-
-        /* Listings header enhancement */
-        .listings-header { align-items: center; }
-        .listings-title-group { display: flex; flex-direction: column; gap: 2px; }
-        .listings-subtitle { font-size: 13px; color: #94a3b8; font-weight: 400; }
-        [data-theme="dark"] .listings-subtitle { color: #655E52; }
-
-        /* Card hover link */
-        .listing-card { position: relative; }
-        .card-view-link {
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            z-index: 0;
-        }
-        .card-actions { position: relative; z-index: 1; }
-        .card-top, .card-title, .card-description, .card-price, .card-seller { position: relative; z-index: 1; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
 </head>
 <body class="dashboard-page">
 
-    <!-- ── MODAL: Choose what to post ── -->
+    <!-- MODAL: Choose what to post -->
     <div class="modal-overlay" id="postModal">
         <div class="modal-box">
             <div class="modal-title">What would you like to post?</div>
-            <div class="modal-sub">Choose the type of listing that best describes what you are offering</div>
+            <div class="modal-sub">Choose the listing type that best describes your offering</div>
             <div class="modal-options">
                 <a href="post-listing.html?type=skill" class="modal-option" onclick="closeModal()">
                     <div class="modal-option-icon">🛠️</div>
@@ -177,83 +42,75 @@
         </div>
     </div>
 
-    <!-- NAVBAR — original + theme toggle added -->
+    <!-- SINGLE PROFESSIONAL NAVBAR -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="dashboard.html" class="logo" style="text-decoration: none; color: inherit;">🔍 THOLA</a>
-            <div class="nav-actions">
-                <a href="profile.html" class="login-link" id="profileNavLink">&#128100; My Profile</a>
+            
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-actions">
                 <a href="search.html" class="login-link">🔍 Search</a>
                 <a href="chat.html" class="login-link">💬 Chat</a>
-                <a href="report.html" class="login-link">🚩 Report</a>
+                <a href="profile.html" class="login-link" id="profileNavLink">👤 My Profile</a>
                 <button class="btn-nav" onclick="openModal()">+ Post a Listing</button>
-                <!-- Theme toggle added -->
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <div class="toggle-knob" id="themeKnob">🌙</div>
+                <button id="theme-toggle" class="btn-toggle" aria-label="Toggle dark mode" data-tooltip="Dark Mode">
+                    <span class="icon-sun">☀️</span>
+                    <span class="icon-moon">🌙</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- QUICK ACTIONS STRIP -->
-    <div class="quick-actions">
-        <div class="quick-actions-container">
-            <span style="font-size:12px; color:#94a3b8; font-weight:600; white-space:nowrap;">Quick post:</span>
-            <a href="post-listing.html?type=skill" class="quick-chip">🛠️ Skill</a>
-            <a href="post-listing.html?type=goods" class="quick-chip">📦 Goods</a>
-            <a href="post-listing.html?type=job" class="quick-chip">💼 Job</a>
-            <a href="post-listing.html?type=request" class="quick-chip">🙏 Request</a>
-            <button class="quick-chip primary" onclick="openModal()">+ Post Now</button>
-        </div>
-    </div>
-
-    <!-- WELCOME BANNER — original, unchanged -->
-    <section class="welcome-banner">
-        <div class="welcome-container">
-            <div class="welcome-text">
-                <h2>Welcome back &#128075;</h2>
+    <!-- HERO WELCOME BANNER -->
+    <section class="dash-hero">
+        <div class="dash-hero-container">
+            <div class="dash-hero-text">
+                <h2>Welcome back, <span id="heroUserName">there</span> 👋</h2>
                 <p>Browse skills and goods available near you right now.</p>
             </div>
-            <a href="#" class="post-btn" onclick="openModal(); return false;">+ Post Your Skill or Goods</a>
         </div>
     </section>
 
-
-
-    <!-- SEARCH & FILTERS — original, unchanged -->
+    <!-- SEARCH & FILTERS -->
     <section class="search-bar-section">
-        <div class="search-bar-container">
-            <input type="text" class="search-input" id="searchInput" placeholder="&#128270; Search for a skill or goods..." />
-            <select class="filter-select" id="categoryFilter">
-                <option value="">All Categories</option>
-                <option value="cleaning">House Cleaning</option>
-                <option value="food">Food</option>
-                <option value="tutoring">Tutoring</option>
-                <option value="repairs">Phone Repairs</option>
-                <option value="babysitting">Babysitting</option>
-                <option value="transport">Transport</option>
-            </select>
-            <select class="filter-select" id="provinceFilter">
-                <option value="">All Provinces</option>
-                <option value="gauteng">Gauteng</option>
-                <option value="western-cape">Western Cape</option>
-                <option value="kzn">KwaZulu-Natal</option>
-                <option value="eastern-cape">Eastern Cape</option>
-                <option value="limpopo">Limpopo</option>
-                <option value="free-state">Free State</option>
-            </select>
-            <button class="search-btn" onclick="filterListings()">Search</button>
-        </div>
-        <div class="filter-tabs">
-            <button class="tab-btn active" data-tab="all">All</button>
-            <button class="tab-btn" data-tab="skill">Skills</button>
-            <button class="tab-btn" data-tab="goods">Goods</button>
-            <button class="tab-btn" data-tab="near">Near Me</button>
+        <div class="dash-search-wrap">
+            <div class="dash-search-row">
+                <div class="dash-search-input-wrap">
+                    <span class="dash-search-icon">🔍</span>
+                    <input type="text" class="dash-search-input" id="searchInput" placeholder="Search for a skill or goods..." />
+                </div>
+                <select class="dash-filter-select" id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="cleaning">House Cleaning</option>
+                    <option value="food">Food</option>
+                    <option value="tutoring">Tutoring</option>
+                    <option value="repairs">Phone Repairs</option>
+                    <option value="babysitting">Babysitting</option>
+                    <option value="transport">Transport</option>
+                </select>
+                <select class="dash-filter-select" id="provinceFilter">
+                    <option value="">All Provinces</option>
+                    <option value="gauteng">Gauteng</option>
+                    <option value="western-cape">Western Cape</option>
+                    <option value="kzn">KwaZulu-Natal</option>
+                    <option value="eastern-cape">Eastern Cape</option>
+                    <option value="limpopo">Limpopo</option>
+                    <option value="free-state">Free State</option>
+                </select>
+                <button class="dash-search-btn" onclick="filterListings()">Search</button>
+            </div>
+            <div class="filter-tabs">
+                <button class="tab-btn active" data-tab="all">🗂 All</button>
+                <button class="tab-btn" data-tab="skill">🛠 Skills</button>
+                <button class="tab-btn" data-tab="goods">📦 Goods</button>
+                <button class="tab-btn" data-tab="near">📍 Near Me</button>
+            </div>
         </div>
     </section>
 
-
-    <!-- LISTINGS — original structure, enhanced header -->
+    <!-- LISTINGS -->
     <main class="listings-section">
         <div class="listings-header">
             <div class="listings-title-group">
@@ -317,7 +174,7 @@
                     <span class="category-badge">Skill</span>
                     <div class="card-icon">📚</div>
                 </div>
-                <h4 class="card-title">High School Maths & Science Tutoring</h4>
+                <h4 class="card-title">High School Maths &amp; Science Tutoring</h4>
                 <p class="card-description">University engineering student offering top-quality matric exam prep sessions.</p>
                 <div class="card-price">R150 <span>/ hour</span></div>
                 <div class="card-seller">
@@ -340,7 +197,7 @@
                     <span class="category-badge">Skill</span>
                     <div class="card-icon">🔧</div>
                 </div>
-                <h4 class="card-title">Fast Screen & Battery Replacements</h4>
+                <h4 class="card-title">Fast Screen &amp; Battery Replacements</h4>
                 <p class="card-description">On-site smartphone repairs. Original parts with 6-month warranty.</p>
                 <div class="card-price">R600 <span>/ device</span></div>
                 <div class="card-seller">
@@ -359,23 +216,16 @@
 
         </div>
 
-        <div class="no-results" id="noResults">
-            &#128269; No listings found. Try different filters.
+        <div class="no-results" id="noResults" style="display:none;">
+            <div class="no-results-icon">🔍</div>
+            <h3 class="no-results-title">No listings found</h3>
+            <p class="no-results-sub">Try adjusting your filters or search terms</p>
         </div>
     </main>
 
-    <!-- FOOTER — original -->
+    <!-- FOOTER -->
     <footer>
-        <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have.</p>
-        <p style="margin-top: 12px;">
-            <a href="index.html">Home</a>
-            <a href="dashboard.html">Browse</a>
-            <a href="post-listing.html">Post</a>
-            <a href="profile.html">Profile</a>
-            <a href="report.html">Report</a>
-            <a href="chat.html">Chat</a>
-            <a href="search.html">Search</a>
-        </p>
+        <p>THOLA &copy; 2026 — Find What You Need. Offer What You Have. Trust Who You Deal With.</p>
     </footer>
 
     <script src="../js/main.js"></script>
@@ -383,16 +233,19 @@
         function openModal()  { document.getElementById('postModal').classList.add('open'); }
         function closeModal() { document.getElementById('postModal').classList.remove('open'); }
 
-        /* Close modal if clicking outside */
         document.getElementById('postModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        /* Hide setup banner once user has a listing */
-        const listings = JSON.parse(localStorage.getItem('thola_listings') || '[]');
-        if (listings.length > 0) {
-            document.getElementById('setupBanner').classList.add('hidden');
-        }
+        /* Greet the logged-in user by first name */
+        (function() {
+            const user = JSON.parse(localStorage.getItem('thola_user') || 'null')
+                      || JSON.parse(localStorage.getItem('tholaProfile') || 'null');
+            if (user && user.name) {
+                const firstName = user.name.trim().split(' ')[0];
+                document.getElementById('heroUserName').textContent = firstName;
+            }
+        })();
     </script>
 </body>
 </html>
