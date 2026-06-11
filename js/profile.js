@@ -137,6 +137,7 @@ document.getElementById('avatarUpload').addEventListener('change', function(e) {
 document.getElementById('logoutBtn').addEventListener('click', () => {
     if (confirm('Are you sure you want to log out?')) {
         localStorage.removeItem('thola_user');
+        sessionStorage.removeItem('session_listings');
         window.location.href = 'index.html';
     }
 });

@@ -94,7 +94,26 @@ function filterListings() {
     });
 
     document.getElementById('listingsCount').textContent = `Showing ${visible} listing${visible !== 1 ? 's' : ''}`;
-    document.getElementById('noResults').classList.toggle('visible', visible === 0);
+    const noResultsEl = document.getElementById('noResults');
+    if (noResultsEl) {
+        noResultsEl.classList.toggle('visible', visible === 0);
+    }
+    const subtitleEl = document.querySelector('.listings-subtitle');
+    if (subtitleEl) {
+        subtitleEl.style.display = (visible === 0) ? 'none' : 'block';
+    }
+}
+
+function resetDashboardFilters() {
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const provinceFilter = document.getElementById('provinceFilter');
+    
+    if (searchInput) searchInput.value = '';
+    if (categoryFilter) categoryFilter.value = '';
+    if (provinceFilter) provinceFilter.value = '';
+    
+    filterListings();
 }
 
 /* ── 4. PROFILE TAB SWITCHING — fixed (was broken/nested) ── */
@@ -158,6 +177,14 @@ function declineOffer() { appendMessage('❌ Offer declined. Please make a new o
 
 /* ── 6. DOMCONTENTLOADED — original logic fixed ── */
 document.addEventListener('DOMContentLoaded', () => {
+
+    /* Clear session listings if this is a page reload/refresh */
+    if (window.performance && window.performance.getEntriesByType) {
+        const navEntries = window.performance.getEntriesByType('navigation');
+        if (navEntries.length > 0 && navEntries[0].type === 'reload') {
+            sessionStorage.removeItem('session_listings');
+        }
+    }
 
     /* Always load dummy data first */
     loadDummyData();
@@ -234,6 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (logoutBtn) {
             logoutBtn.addEventListener('click', () => {
                 localStorage.removeItem('thola_user');
+                sessionStorage.removeItem('session_listings');
                 alert('You have logged out successfully.');
                 window.location.href = 'index.html';
             });

@@ -20,16 +20,18 @@ The project demonstrates:
 * Client-side data handling
 * Interactive user interfaces
 * Modern web development practices
+* Dark / Light mode customization
 
 ---
 
 ## Technologies Used
 
 * HTML5
-* CSS3
+* CSS3 (Modular Stylesheets)
 * JavaScript (Vanilla JS)
 * EmailJS (for OTP verification and password reset emails)
 * Web Crypto API (SHA-256 password hashing)
+* Inline SVG Icons (for scalable and theme-friendly social indicators)
 
 ---
 
@@ -108,7 +110,18 @@ THOLA/
 │   └── report.html             # Report a listing or user
 │
 ├── css/
-│   └── style.css               # Single unified stylesheet (all pages)
+│   ├── global.css              # Reset rules and typography system variables
+│   ├── index.css               # Landing page custom styles
+│   ├── learn-more.css          # Safety platform overview custom styles
+│   ├── auth.css                # Authentication suite custom styles
+│   ├── dashboard.css           # Listings hub custom styles
+│   ├── post-listing.css        # New listing creation custom styles
+│   ├── listing-detail.css      # Individual listing details custom styles
+│   ├── chat.css                # Thread chatting system custom styles
+│   ├── search.css              # Custom styling for advanced searches
+│   ├── profile.css             # Profile views, badges & ratings custom styles
+│   ├── report.css              # Flag reporting forms custom styles
+│   └── style.css               # Legacy root custom styles
 │
 ├── js/
 │   ├── main.js                 # Global logic: auth guard, theme, navbar
@@ -125,6 +138,8 @@ THOLA/
 │   ├── report.js               # Report submission logic
 │   └── search.js               # Search & filter logic
 │
+├── THOLA_Daily_User_Manual.pdf # Non-technical Daily User Guide PDF
+├── THOLA_Platform_Guide.pdf    # Developer & User System Technical Guide PDF
 └── README.md
 ```
 
