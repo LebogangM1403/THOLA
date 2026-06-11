@@ -78,6 +78,9 @@
                 requestSubmit.innerText = 'Sending Code...';
                 generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
 
+                const expiryDate = new Date(Date.now() + 15 * 60 * 1000);
+                const expiryTime = expiryDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
                 const templateId = typeof EMAILJS_RESET_TEMPLATE_ID !== 'undefined' ? EMAILJS_RESET_TEMPLATE_ID : EMAILJS_TEMPLATE_ID;
 
                 try {
@@ -89,7 +92,11 @@
                         otp_code: generatedOtp,
                         otp: generatedOtp,
                         code: generatedOtp,
-                        message: generatedOtp
+                        message: generatedOtp,
+                        expiry_time: expiryTime,
+                        company_name: 'THOLA',
+                        app_name: 'THOLA',
+                        valid_minutes: '15'
                     }).then(() => {
                         otpSubtitle.innerHTML = `We sent a 6-digit recovery code to <strong style="color:#ff6600;">${userEmail}</strong>`;
                         requestCard.style.display = 'none';
@@ -202,6 +209,10 @@
                 }
 
                 generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+
+                const expiryDate = new Date(Date.now() + 15 * 60 * 1000);
+                const expiryTime = expiryDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
                 const templateId = typeof EMAILJS_RESET_TEMPLATE_ID !== 'undefined' ? EMAILJS_RESET_TEMPLATE_ID : EMAILJS_TEMPLATE_ID;
 
                 try {
@@ -213,7 +224,11 @@
                         otp_code: generatedOtp,
                         otp: generatedOtp,
                         code: generatedOtp,
-                        message: generatedOtp
+                        message: generatedOtp,
+                        expiry_time: expiryTime,
+                        company_name: 'THOLA',
+                        app_name: 'THOLA',
+                        valid_minutes: '15'
                     }).then(() => {
                         otpError.innerText = '✅ A new recovery code has been sent!';
                         otpError.style.display = 'block';

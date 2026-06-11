@@ -3,8 +3,50 @@ function loadListing() {
     const urlParams = new URLSearchParams(window.location.search);
     const listingId = urlParams.get('id');
     
-    let listings = JSON.parse(localStorage.getItem('thola_listings') || '[]');
-    let listing = listings.find(l => l.id == listingId);
+    let listings = [
+        ...JSON.parse(sessionStorage.getItem('session_listings') || '[]'),
+        ...JSON.parse(localStorage.getItem('thola_listings') || '[]')
+    ];
+    
+    const dummyListings = [
+        {
+            id: 'dummy-1',
+            title: 'Professional House Cleaning',
+            description: 'Thorough, reliable home and office cleaning in Johannesburg. Custom rates available.',
+            price: '350',
+            location: 'Gauteng, South Africa'
+        },
+        {
+            id: 'dummy-2',
+            title: 'Traditional Homemade Platters',
+            description: 'Fresh traditional South African meals prepared daily. Free delivery within Cape Town.',
+            price: '85',
+            location: 'Western Cape, South Africa'
+        },
+        {
+            id: 'dummy-3',
+            title: 'High School Maths & Science Tutoring',
+            description: 'University engineering student offering top-quality matric exam prep sessions.',
+            price: '150',
+            location: 'KwaZulu-Natal, South Africa'
+        },
+        {
+            id: 'dummy-4',
+            title: 'Fast Screen & Battery Replacements',
+            description: 'On-site smartphone repairs. Original parts with 6-month warranty.',
+            price: '600',
+            location: 'Gauteng, South Africa'
+        },
+        {
+            id: 'dummy-5',
+            title: '6tuy Transport Services',
+            description: 'Affordable and reliable local transport, moving, and delivery services across the province.',
+            price: '150',
+            location: 'Gauteng, South Africa'
+        }
+    ];
+
+    let listing = listings.find(l => l.id == listingId) || dummyListings.find(l => l.id == listingId);
     
     // Fallback default if no listing found
     if (!listing) {
