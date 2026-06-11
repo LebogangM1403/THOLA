@@ -15,6 +15,31 @@
             const loginSubmit = document.getElementById('login-submit');
             const loginError  = document.getElementById('login-error');
 
+            // Check if registration was successful
+            if (sessionStorage.getItem('thola_reg_success') === '1') {
+                sessionStorage.removeItem('thola_reg_success');
+                
+                // Show a modern banner on the card
+                const successBanner = document.createElement('div');
+                successBanner.className = 'success-msg';
+                successBanner.style.backgroundColor = 'rgba(34, 197, 94, 0.1)';
+                successBanner.style.color = '#4ade80';
+                successBanner.style.border = '1px solid rgba(34, 197, 94, 0.25)';
+                successBanner.style.padding = '14px';
+                successBanner.style.borderRadius = '10px';
+                successBanner.style.fontSize = '14px';
+                successBanner.style.fontWeight = '600';
+                successBanner.style.textAlign = 'center';
+                successBanner.style.marginBottom = '20px';
+                successBanner.style.backdropFilter = 'blur(8px)';
+                successBanner.innerText = '✅ Account created successfully! Please log in below.';
+                
+                loginForm.parentNode.insertBefore(successBanner, loginForm);
+                
+                // Standard window alert
+                alert('Account created successfully! You can now log in.');
+            }
+
             async function hashPassword(password) {
                 const encoder    = new TextEncoder();
                 const data       = encoder.encode(password);

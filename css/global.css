@@ -20,6 +20,7 @@ body {
   color: #ffffff;
   padding: 16px 0;
 }
+
 .nav-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -68,15 +69,89 @@ body {
 footer { 
   background-color: #0d1e3d; 
   color: #94a3b8; 
-  text-align: center; 
-  padding: 24px 20px; 
+  padding: 40px 20px 24px; 
   font-size: 14px;
   margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
-footer a { 
-  color: #ff6600; 
-  text-decoration: none; 
-  margin: 0 12px; 
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+.footer-brand {
+  flex: 1;
+  min-width: 250px;
+  text-align: left;
+}
+.footer-logo {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+.footer-tagline {
+  color: #64748b;
+  line-height: 1.5;
+  max-width: 320px;
+}
+.footer-links-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+.footer-col {
+  text-align: left;
+  min-width: 160px;
+}
+.footer-col h4 {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.footer-col p {
+  margin-bottom: 8px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.social-icon {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.social-icon:hover {
+  color: #ff6600;
+}
+.footer-divider {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-bottom: 20px;
+}
+.footer-bottom {
+  text-align: center;
+  color: #64748b;
+  font-size: 12px;
 }
 
 /* --- Theme Toggle --- */
@@ -149,7 +224,10 @@ footer a {
 [data-theme="dark"] .logo { color: #e8edf5; }
 [data-theme="dark"] .login-link { color: #7eb3ff; }
 [data-theme="dark"] footer { background-color: #091629; color: rgba(232,237,245,0.5); }
-[data-theme="dark"] footer a { color: #7eb3ff; }
+[data-theme="dark"] footer .footer-logo, [data-theme="dark"] footer .footer-col h4 { color: #ffffff; }
+[data-theme="dark"] footer .footer-col p { color: #8a9cb4; }
+[data-theme="dark"] footer .social-icon { color: #8a9cb4; }
+[data-theme="dark"] footer .social-icon:hover { color: #ff6600; }
 
 /* Hamburger Menu for Mobile */
 .hamburger {
@@ -196,21 +274,20 @@ footer a {
 
 /* Global Back Bar style */
 .back-bar {
-  background: #ffffff !important;
+  background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
-  padding: 16px 20px !important;
-  max-width: none !important;
-  margin: 0 !important;
+  padding: 12px 0;
 }
 [data-theme="dark"] .back-bar {
-  background: #0d1e3d !important;
-  border-bottom-color: rgba(255,255,255,0.08) !important;
+  background: #0d1e3d;
+  border-bottom-color: rgba(255,255,255,0.08);
 }
-.back-bar .back-link {
+
+/* Inner wrapper aligns back link to same horizontal position as the THOLA logo */
+.back-bar-inner {
   max-width: 1100px;
-  display: block;
-  width: fit-content;
-  margin: 0;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 .back-link {
   color: #ff6600;
@@ -219,9 +296,28 @@ footer a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: opacity 0.2s;
+  padding: 8px 16px;
+  border: 1.5px solid #ff6600;
+  border-radius: 20px;
+  font-size: 13.5px;
+  background-color: transparent;
+  transition: all 0.2s ease;
 }
-.back-link:hover { opacity: 0.8; }
+.back-link:hover {
+  background-color: rgba(255, 102, 0, 0.08);
+  transform: translateX(-2px);
+  color: #e65c00;
+  border-color: #e65c00;
+}
+[data-theme="dark"] .back-link {
+  border-color: #ff6600;
+  color: #ff6600;
+}
+[data-theme="dark"] .back-link:hover {
+  background-color: rgba(255, 102, 0, 0.12);
+  color: #ff8533;
+  border-color: #ff8533;
+}
 
 /* Global helper screen reader class */
 .sr-only {
